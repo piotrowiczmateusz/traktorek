@@ -6,22 +6,22 @@ import java.awt.*;
 
 public class Window extends JFrame{
    
-    public CellMap map;
-    public Cell[][] cells;   
+    public MapaKomorek map;
+    public Komorka[][] komorki;   
     private int sizeX;
     private int sizeY;
     static Window window = new Window();
 
     public Window() {
-        super("Jestę Traktorę");
+        super("Agent -> Traktorek");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setResizable(false);
-        cells = Map.create();
-        sizeX = cells.length * 40;
-        sizeY = cells[0].length * 40;
+        komorki = Mapa.create();
+        sizeX = komorki.length * 40;
+        sizeY = komorki[0].length * 40;
         setSize(sizeX , sizeY);
-        map = new CellMap(cells);        
+        map = new MapaKomorek(komorki);        
     }
 
     public static void main(String[] args) {
@@ -31,26 +31,38 @@ public class Window extends JFrame{
     @Override
     public void paint(Graphics g) {
         try {
-            Cell[][] cells = map.getMap();
-            for (int i = 0; i < cells.length; i++) {
-                for (int j = 0; j < cells[0].length; j++) {
-                    if (cells[i][j].getName() == "ROAD") {
-                        Image road = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\droga2.png").getImage();
-                        g.drawImage(road, i * 40, j * 40, null);
+            Komorka[][] komorki = map.getMap();
+            for (int i = 0; i < komorki.length; i++) {
+                for (int j = 0; j < komorki[0].length; j++) {
+                    if (komorki[i][j].getName() == "Trawa") {
+                        Image trawa = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\trawa.png").getImage();
+                        g.drawImage(trawa, i * 40, j * 40, null);
                     } 
+                    else if (komorki[i][j].getName() == "Droga") {
+                        Image droga = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\droga.png").getImage();
+                        g.drawImage(droga, i * 40, j * 40, null);
+                    }
+                    else if (komorki[i][j].getName() == "Drzewo") {
+                        Image droga = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\drzewo.png").getImage();
+                        g.drawImage(droga, i * 40, j * 40, null);
+                    }
+                    else if (komorki[i][j].getName() == "Buraki") {
+                        Image droga = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\buraki.png").getImage();
+                        g.drawImage(droga, i * 40, j * 40, null);
+                    }
+                    else if (komorki[i][j].getName() == "Kamien") {
+                        Image droga = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\Kamien.png").getImage();
+                        g.drawImage(droga, i * 40, j * 40, null);
+                    }
                 }
             }
             
-            Image house = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\domek2.png").getImage();
+            Image house = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\domek.png").getImage();
             g.drawImage(house, 0, 0, null);
             
         } 
-        
-        
         catch (Exception e) {
             System.out.println("Natrafiłem na problem: " + e.toString());
         }
-
     }
-
 }
