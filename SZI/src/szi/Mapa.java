@@ -16,10 +16,10 @@ import szi.data.Komorka;
 public class Mapa {
     public static Komorka[][] create() {       
         Komorka[][] komorki = new Komorka[][]{
-                new Komorka[]{new Trawa(), (new Trawa()), new Trawa(), new Trawa(), new Droga(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo()},
-                new Komorka[]{new Trawa(), (new Trawa()), new Trawa(), new Trawa(), new Droga(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo()},
-                new Komorka[]{new Trawa(), (new Trawa()), new Trawa(), new Trawa(), new Droga(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo()},
-                new Komorka[]{new Trawa(), (new Trawa()), new Trawa(), new Trawa(), new Droga(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo()},
+                new Komorka[]{new Trawa(), (new Trawa()), new Trawa(), new Trawa(), new Droga(), new Droga(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo()},
+                new Komorka[]{new Trawa(), (new Trawa()), new Trawa(), new Trawa(), new Droga(), new Droga(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo()},
+                new Komorka[]{new Trawa(), (new Trawa()), new Trawa(), new Trawa(), new Droga(), new Droga(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo()},
+                new Komorka[]{new Trawa(), (new Trawa()), new Trawa(), new Trawa(), new Droga(), new Droga(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo()},
                 new Komorka[]{new Droga(), (new Droga()), new Droga(), new Droga(), new Droga(), new Droga(), new Droga(), new Droga(), new Droga(), new Droga(), new Droga(), new Droga(), new Droga(), new Droga()},
                 new Komorka[]{new Drzewo(), (new Drzewo()), new Drzewo(), new Drzewo(), new Drzewo(), new Droga(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Drzewo(), new Droga()},
                 new Komorka[]{new Drzewo(), (new Buraki()), new Buraki(), new Buraki(), new Buraki(), new Droga(), new Trawa(), new Buraki(), new Buraki(), new Buraki(), new Buraki(), new Buraki(), new Trawa(), new Droga()},

@@ -12,6 +12,10 @@ import java.awt.*;
  */
 
 public interface Komorka {
+    void cross();
     Color getColor();
+    double getCrossingCost();
+    double getIncome();
+    boolean isCrossable();
     String getName();
 }

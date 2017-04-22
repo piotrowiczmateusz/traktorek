@@ -3,17 +3,26 @@ package szi;
 import szi.data.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import static java.lang.Math.toIntExact;
 
 public class Window extends JFrame{
    
     public MapaKomorek map;
+    public static Agent agent = new Agent(0, 4);
+    static java.util.Timer timer = new java.util.Timer();
     public Komorka[][] komorki;   
     private int sizeX;
     private int sizeY;
     static Window window = new Window();
+    static Czas time = new Czas();
+    private AStar aStar;
 
     public Window() {
         super("Agent -> Traktorek");
+        agent.addWindow(this);
+        Czas.addWindow(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setResizable(false);
@@ -21,11 +30,24 @@ public class Window extends JFrame{
         sizeX = komorki.length * 40;
         sizeY = komorki[0].length * 40;
         setSize(sizeX , sizeY);
-        map = new MapaKomorek(komorki);        
+        map = new MapaKomorek(komorki);
+        aStar = new AStar(this, agent);
+        addMouseListener(new MouseAdapter() { 
+          public void mousePressed(MouseEvent me) { 
+            int destinationX = toIntExact(me.getX()/40);
+            int destinationY = toIntExact(me.getY()/40);
+            
+           AStar.runningChange();
+            AStar.runAStar(agent.getX(), agent.getY(), destinationX, destinationY);
+            Czas.setStepsList(AStar.stepsList);
+            System.out.println(destinationX + ", " + destinationY);
+          } 
+        });
     }
 
     public static void main(String[] args) {
-       
+       timer.scheduleAtFixedRate(agent, 10, 10);
+       time.run();
     }
 
     @Override
@@ -59,6 +81,9 @@ public class Window extends JFrame{
             
             Image house = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\domek.png").getImage();
             g.drawImage(house, 0, 0, null);
+            
+            Image tractor = new ImageIcon(Agent.getIcon()).getImage();
+            g.drawImage(tractor, agent.getX() * 40, agent.getY() * 40, null);
             
         } 
         catch (Exception e) {
