@@ -10,7 +10,6 @@ package szi.data;
  * @author s407332
  */
 import szi.Agent;
-import szi.Mapa;
 import szi.Window;
 
 import java.util.ArrayList;
