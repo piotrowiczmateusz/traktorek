@@ -36,7 +36,7 @@ public class Czas extends TimerTask {
             nextHour();
             checkDate();
             try {
-                Thread.sleep(500);
+                Thread.sleep(250);
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
@@ -44,7 +44,7 @@ public class Czas extends TimerTask {
                 moveAgent();
             }
             try {
-                Thread.sleep(500);
+                Thread.sleep(250);
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
@@ -81,19 +81,17 @@ public class Czas extends TimerTask {
         }
         if (positionInTab == tab.size()) {
             positionInTab = 0;
-            //this.direction = !this.direction;
             AStar.runningChange();
         }
     }
 
     private void nextHour() {
-        hour++;
+        hour = hour + 3;
     }
 
     private void nextDay() {
         hour = 0;
         day++;
-        //Weather.change();
         Agent.repaintGraphic();
     }
 
@@ -119,7 +117,6 @@ public class Czas extends TimerTask {
         } else if (day == 32) {
             nextMonth();
         }
-
     }
 
     public static int getDay() {
@@ -141,5 +138,4 @@ public class Czas extends TimerTask {
     public static void setStepsList(List<String> list) {
         tab = list;
     }
-
 }

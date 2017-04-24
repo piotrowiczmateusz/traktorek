@@ -22,7 +22,7 @@ public class Buraki implements Komorka{
 
     @Override
     public double getCrossingCost() {
-        return 10;
+        return 4.5;
     }
 
     @Override

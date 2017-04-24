@@ -22,7 +22,7 @@ public class Kamien implements Komorka {
 
     @Override
     public double getCrossingCost() {
-        return 10;
+        return 1000;
     }
 
     @Override

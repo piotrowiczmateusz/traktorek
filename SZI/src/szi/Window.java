@@ -69,7 +69,7 @@ public class Window extends JFrame{
                         g.drawImage(droga, i * 40, j * 40, null);
                     }
                     else if (komorki[i][j].getName() == "Buraki") {
-                        Image droga = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\buraki.png").getImage();
+                        Image droga = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\sloneczniki.png").getImage();
                         g.drawImage(droga, i * 40, j * 40, null);
                     }
                     else if (komorki[i][j].getName() == "Kamien") {

@@ -23,7 +23,7 @@ public class Droga implements Komorka {
 
     @Override
     public double getCrossingCost() {
-        return 10;
+        return 3;
     }
 
     @Override

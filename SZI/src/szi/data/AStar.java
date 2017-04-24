@@ -46,8 +46,6 @@ public class AStar {
         stepsList = new ArrayList<String>();
         setStartPositions(startX, startY);
         setEndPositions(endX, endY);
-        int wasX = startPositionX;
-        int wasY = startPositionY;
         while (true) {
             if (startPositionX == endPositionX && startPositionY == endPositionY) {
                 return;
@@ -55,31 +53,29 @@ public class AStar {
             currentPositionX = startPositionX;
             currentPositionY = startPositionY;
 
-            checkDirection(wasX, wasY);
+            checkDirection();
             getDestinationString(direction);
             stepsList.add(nextStep);
-
-            wasX = currentPositionX;
-            wasY = currentPositionY;
+            
+            //set new startPosition = curentpostion
             setStartPositions(startPositionX, startPositionY);
         }
 
     }
-
-    private double checkCost(int posX, int posY) {
-        return window.komorki[posX][posY].getCrossingCost();
-    }
-
+    
+    //Ustawianie pozycji startowych
     private static void setStartPositions(int startPosX, int startPosY) {
         startPositionX = startPosX;
         startPositionY = startPosY;
     }
-
+    
+    //Ustawienie pozycji końcowych
     private static void setEndPositions(int endPosX, int endPosY) {
         endPositionX = endPosX;
         endPositionY = endPosY;
     }
-
+    
+    //Poruszanie traktora w zależności od podanego kierunku ruchu
     private static void getDestinationString(int type) {
         switch(type) {
             case LEFT:
@@ -101,7 +97,7 @@ public class AStar {
         }
     }
 
-    private static void checkDirection(int wasX, int wasY) {
+    private static void checkDirection() {
         if (startPositionX > endPositionX) { //lewo
             direction = lowestValue(LEFT,
                     window.komorki[currentPositionX][currentPositionY + 1].getCrossingCost() + distance(currentPositionX, currentPositionY + 1),
