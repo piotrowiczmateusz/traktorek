@@ -15,25 +15,27 @@ public class Agent extends TimerTask {
 
     private Window window;
 
+ public static final String WEST = "west";
+
+    public static final String EAST = "east";
+    public static final String NORTH = "north";
+    public static final String SOUTH = "south";
     public static final String LEFT = "left";
     public static final String RIGHT = "right";
-    public static final String UP = "up";
-    public static final String DOWN = "down";
-
+    public static final String FORWARD = "forward";
+    public static final String BACKWARD = "backward";
+    
     private static String icon;
-
     int width = 40;
     int height = 40;
-    //IMAGE
     int positionX;
     int positionY;
+    int rotation;
 
-    public void run() {
-        //nop
-    }
+    public void run() {}
 
     public Agent(int positionX, int positionY) {
-        icon = System.getProperty("user.dir") + "\\src\\graphics\\tractor-" + RIGHT + ".png";
+        icon = System.getProperty("user.dir") + "\\src\\graphics\\tractor-" + EAST + ".png";
         this.positionX = positionX;
         this.positionY = positionY;
     }
@@ -43,28 +45,70 @@ public class Agent extends TimerTask {
     }
 
     public void moveAgent(String way) {
-        icon = System.getProperty("user.dir") + "\\src\\graphics\\tractor-" + way + ".png";
-        if (way.equals(UP) && positionY > 1) {
-            if (checkNextStep(UP)) {
-                positionY--;
-            }
+        if (way.equals(LEFT)) {
+            rotation = (rotation - 1 + 4) % 4;
+        }
+        if (way.equals(RIGHT)) {
+            rotation = (rotation + 1) % 4;
+        }
+        String absoluteDirection = LocalToAbsolute();
+        icon = System.getProperty("user.dir") + "/src/graphics/tractor-" + absoluteDirection + ".png";
+        if (way.equals(FORWARD) || way.equals(BACKWARD)) {
+            int i = way.equals(FORWARD) ? 1 : -1;
+            if (absoluteDirection.equals(Agent.NORTH) && positionY - i >= 0 && positionY - i < window.komorki[0].length) {
+                if (checkNextStep(positionX, positionY - i)) {
+                    positionY -= i;
+                }
 
-        } else if (way.equals(DOWN) && positionY < 13) {
-            if (checkNextStep(DOWN)) {
-                positionY++;
-            }
+            } else if (absoluteDirection.equals(
+                    Agent.SOUTH) && positionY + i >= 0 && positionY + i < window.komorki[0].length) {
+                if (checkNextStep(positionX, positionY + i)) {
+                    positionY += i;
+                }
 
-        } else if (way.equals(LEFT) && positionX > 0) {
-            if (checkNextStep(LEFT)) {
-                positionX--;
-            }
+            } else if (absoluteDirection.equals(
+                    Agent.WEST) && positionX - i >= 0 && positionX - i < window.komorki.length) {
+                if (checkNextStep(positionX - i, positionY)) {
+                    positionX -= i;
+                }
 
-        } else if (way.equals(RIGHT) && positionX < 23) {
-            if (checkNextStep(RIGHT)) {
-                positionX++;
+            } else if (absoluteDirection.equals(
+                    Agent.EAST) && positionX - i >= 0 && positionX - i < window.komorki.length) {
+                if (checkNextStep(positionX + i, positionY)) {
+                    positionX += i;
+                }
             }
         }
+        System.out.println("Obecna pozycja: X: " + positionX + ", Y: " + positionY);
         repaintGraphic();
+
+    }
+    
+    public Position forwardTile() {
+        int i = 1;
+        int x = positionX;
+        int y = positionY;
+        String absoluteDirection = LocalToAbsolute();
+        if (absoluteDirection.equals(Agent.NORTH) && positionY - i >= 0 && positionY - i < window.komorki[0].length) {
+            x -= i;
+
+
+        } else if (absoluteDirection.equals(
+                Agent.SOUTH) && positionY + i >= 0 && positionY + i < window.komorki[0].length) {
+            y += i;
+
+
+        } else if (absoluteDirection.equals(Agent.WEST) && positionX - i >= 0 && positionX - i < window.komorki.length) {
+            x -= i;
+
+        } else if (absoluteDirection.equals(Agent.EAST) && positionX - i >= 0 && positionX - i < window.komorki.length) {
+            y += i;
+        }
+        return new Position(x, y);
+    }
+
+    private String LocalToAbsolute() {
+        return new String[]{NORTH, EAST, SOUTH, WEST}[rotation];
     }
 
     public int getWidth() {
@@ -82,36 +126,41 @@ public class Agent extends TimerTask {
     public int getY() {
         return this.positionY;
     }
+    
+    public int getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(int rotation) {
+        this.rotation = rotation;
+    }
 
     public static void repaintGraphic() {
         Window.window.repaint();
     }
 
-    public boolean checkNextStep(String direction) {
-        if (direction.equals(UP)) {
-            if (window.komorki[positionX][positionY - 1].isCrossable()) {
-                return true;
-            }
-
-        } else if (direction.equals(DOWN)) {
-            if (window.komorki[positionX][positionY + 1].isCrossable()) {
-                return true;
-            }
-
-        } else if (direction.equals(LEFT)) {
-            if (window.komorki[positionX - 1][positionY].isCrossable()) {
-                return true;
-            }
-
-        } else if (direction.equals(RIGHT)) {
-            if (window.komorki[positionX + 1][positionY].isCrossable()) {
-                return true;
-            }
-        }
-        return false;
+    public boolean checkNextStep(int x, int y) {
+        return window.komorki[x][y].isCrossable();
     }
 
     public static String getIcon() {
         return icon;
     }
+    
+    public boolean equals(Agent agent) {
+        return (this.getX() == agent.getX() && this.getY() == agent.getY() && this.getRotation() == agent.getRotation());
+    }
+    
+    public class Position {
+
+        public int x;
+
+        public int y;
+
+        public Position(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+    
 }

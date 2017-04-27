@@ -10,7 +10,7 @@ import static java.lang.Math.toIntExact;
 public class Window extends JFrame{
    
     public MapaKomorek map;
-    public static Agent agent = new Agent(0, 4);
+    public static Agent agent = new Agent(2, 4);
     static java.util.Timer timer = new java.util.Timer();
     public Komorka[][] komorki;   
     private int sizeX;
@@ -37,10 +37,9 @@ public class Window extends JFrame{
             int destinationX = toIntExact(me.getX()/40);
             int destinationY = toIntExact(me.getY()/40);
             
-           AStar.runningChange();
-            AStar.runAStar(agent.getX(), agent.getY(), destinationX, destinationY);
+            AStar.runAStar(agent.getX(), agent.getY(), agent.rotation, destinationX , destinationY);
             Czas.setStepsList(AStar.stepsList);
-            System.out.println(destinationX + ", " + destinationY);
+            System.out.println("Cel: X: " + destinationX + ", Y: " + destinationY);
           } 
         });
     }
