@@ -13,7 +13,12 @@ import java.awt.*;
 
 public interface Komorka {
     void cross();
+    double getNum();
+    boolean isCurrentObject();
+    void setCurrentObject(boolean x);
+    void fertilize();
     Color getColor();
+    double getNawoz();
     double getCrossingCost();
     double getIncome();
     boolean isCrossable();

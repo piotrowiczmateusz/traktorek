@@ -9,11 +9,15 @@ package szi;
  *
  * @author s407332
  */
+
+import java.io.IOException;
 import java.util.TimerTask;
+import szi.NeuralNetwork.NeuralNetwork;
+import szi.NeuralNetwork.runNetwork;
 
 public class Agent extends TimerTask {
 
-    private Window window;
+ private Window window;
 
  public static final String WEST = "west";
 
@@ -31,13 +35,23 @@ public class Agent extends TimerTask {
     int positionX;
     int positionY;
     int rotation;
-
-    public void run() {}
+     
+    runNetwork runnetwork = null;
+    
+    @Override
+    public void run() {
+    }
 
     public Agent(int positionX, int positionY) {
         icon = System.getProperty("user.dir") + "\\src\\graphics\\tractor-" + EAST + ".png";
         this.positionX = positionX;
         this.positionY = positionY;
+        
+        try {
+            runnetwork = new runNetwork(0.2, 0.6, 0.12);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addWindow(Window window) {
@@ -79,9 +93,23 @@ public class Agent extends TimerTask {
                 }
             }
         }
+        
         System.out.println("Obecna pozycja: X: " + positionX + ", Y: " + positionY);
+        if(window.komorki[positionX][positionY].isCurrentObject()){
+          double[] x = new double[2];
+          x[0] = window.komorki[positionX][positionY].getNum();
+          x[1] = window.komorki[positionX][positionY].getNawoz();
+          
+          runnetwork.neuralNetwork.setInputs(x);
+          double decisionValue = runnetwork.neuralNetwork.getOutput()[0];         
+          System.out.println("Stan nawozu na określonym polu: " + window.komorki[positionX][positionY].getNawoz());
+          
+          if(decisionValue > 0.5){
+              window.komorki[positionX][positionY].fertilize();
+          }
+          window.komorki[positionX][positionY].setCurrentObject(false);
+        }
         repaintGraphic();
-
     }
     
     public Position forwardTile() {
@@ -91,13 +119,10 @@ public class Agent extends TimerTask {
         String absoluteDirection = LocalToAbsolute();
         if (absoluteDirection.equals(Agent.NORTH) && positionY - i >= 0 && positionY - i < window.komorki[0].length) {
             x -= i;
-
-
-        } else if (absoluteDirection.equals(
-                Agent.SOUTH) && positionY + i >= 0 && positionY + i < window.komorki[0].length) {
+            
+        } else if (absoluteDirection.equals(Agent.SOUTH) && positionY + i >= 0 && positionY + i < window.komorki[0].length) {
             y += i;
-
-
+            
         } else if (absoluteDirection.equals(Agent.WEST) && positionX - i >= 0 && positionX - i < window.komorki.length) {
             x -= i;
 
@@ -106,7 +131,7 @@ public class Agent extends TimerTask {
         }
         return new Position(x, y);
     }
-
+    
     private String LocalToAbsolute() {
         return new String[]{NORTH, EAST, SOUTH, WEST}[rotation];
     }

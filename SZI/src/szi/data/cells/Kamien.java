@@ -14,11 +14,34 @@ import java.awt.Color;
 public class Kamien implements Komorka {
     @Override
     public void cross() {}
-
+    
+    @Override
+    public double getNawoz() {
+        return 0;
+    }
+    
     @Override
     public Color getColor() {
         return new Color(50,50,50);
     }
+    
+    @Override
+    public double getNum() {
+        return 0;
+    }
+    
+    @Override
+    public void setCurrentObject(boolean isCurrentObject) {
+        
+    }
+    
+    @Override
+    public boolean isCurrentObject() {
+        return false;
+    }
+    
+    @Override
+    public void fertilize(){}
 
     @Override
     public double getCrossingCost() {

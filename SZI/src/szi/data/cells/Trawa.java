@@ -16,6 +16,29 @@ public class Trawa implements Komorka {
 
     @Override
     public void cross() {}
+    
+    @Override
+    public double getNawoz() {
+        return 0;
+    } 
+    
+    @Override
+    public double getNum() {
+        return 0;
+    }
+    
+    @Override
+    public void setCurrentObject(boolean isCurrentObject) {
+        
+    }
+    
+    @Override
+    public boolean isCurrentObject() {
+        return false;
+    }
+    
+    @Override
+    public void fertilize(){}
 
     @Override
     public Color getColor() {
@@ -24,7 +47,7 @@ public class Trawa implements Komorka {
 
     @Override
     public double getCrossingCost() {
-        return 4;
+        return 4.5;
     }
 
     @Override

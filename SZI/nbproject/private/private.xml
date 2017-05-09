@@ -3,15 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/J:/Projekty/traktorek/SZI/src/szi/Mapa.java</file>
-            <file>file:/J:/Projekty/traktorek/SZI/src/szi/data/cells/Kamien.java</file>
-            <file>file:/J:/Projekty/traktorek/SZI/src/szi/data/cells/Droga.java</file>
-            <file>file:/J:/Projekty/traktorek/SZI/src/szi/data/Czas.java</file>
-            <file>file:/J:/Projekty/traktorek/SZI/src/szi/data/AStar.java</file>
-            <file>file:/J:/Projekty/traktorek/SZI/src/szi/data/cells/Buraki.java</file>
-            <file>file:/J:/Projekty/traktorek/SZI/src/szi/data/cells/Drzewo.java</file>
-            <file>file:/J:/Projekty/traktorek/SZI/src/szi/data/cells/Trawa.java</file>
-            <file>file:/J:/Projekty/traktorek/SZI/src/szi/Window.java</file>
+            <file>file:/D:/Projekty/traktorek/SZI/src/szi/Window.java</file>
+            <file>file:/D:/Projekty/traktorek/SZI/src/plants/Kukurydza.java</file>
+            <file>file:/D:/Projekty/traktorek/SZI/src/szi/data/AStar.java</file>
+            <file>file:/D:/Projekty/traktorek/SZI/src/plants/Buraki.java</file>
+            <file>file:/D:/Projekty/traktorek/SZI/src/szi/data/MapaKomorek.java</file>
+            <file>file:/D:/Projekty/traktorek/SZI/src/szi/Agent.java</file>
         </group>
     </open-files>
 </project-private>

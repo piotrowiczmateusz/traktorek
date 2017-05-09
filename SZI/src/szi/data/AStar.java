@@ -61,8 +61,6 @@ public class AStar {
                     agent.moveAgent(Agent.FORWARD);
                     break;
             }
-          
-            window.repaint();
         }
     }
 
@@ -94,13 +92,16 @@ public class AStar {
     private static Position newPosition(Position oldPosition, String direction) {
         Position newPosition = new Position(oldPosition.x, oldPosition.y, oldPosition.rotation, 1);
         newPosition.moveAgent(direction);
-        if (direction == Agent.LEFT || direction == Agent.RIGHT)
+        if (direction == Agent.LEFT || direction == Agent.RIGHT){
             newPosition.gValue = 0.5 * window.komorki[newPosition.x][newPosition.y].getCrossingCost();
+        }
         newPosition.moves = new ArrayList<>(oldPosition.moves);
-        if (direction == Agent.BACKWARD)
+        if (direction == Agent.BACKWARD){
             newPosition.gValue = 2 * window.komorki[newPosition.x][newPosition.y].getCrossingCost();
-        if (direction == Agent.FORWARD)
+        }
+        if (direction == Agent.FORWARD){
             newPosition.gValue = window.komorki[newPosition.x][newPosition.y].getCrossingCost();
+        }
         newPosition.moves.add(direction);
         return newPosition;
     }

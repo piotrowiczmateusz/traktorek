@@ -1,11 +1,24 @@
 package szi;
 
+import NeuralNetwork2.NeuralNetwork;
 import szi.data.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageFilter;
+import java.awt.image.ImageProducer;
+import java.awt.image.RGBImageFilter;
+import java.io.IOException;
 import static java.lang.Math.toIntExact;
+import java.util.Arrays;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
+import plants.Buraki;
+
 
 public class Window extends JFrame{
    
@@ -37,6 +50,7 @@ public class Window extends JFrame{
             int destinationX = toIntExact(me.getX()/40);
             int destinationY = toIntExact(me.getY()/40);
             
+            window.komorki[destinationX][destinationY].setCurrentObject(true);
             AStar.runAStar(agent.getX(), agent.getY(), agent.rotation, destinationX , destinationY);
             Czas.setStepsList(AStar.stepsList);
             System.out.println("Cel: X: " + destinationX + ", Y: " + destinationY);
@@ -53,28 +67,19 @@ public class Window extends JFrame{
     public void paint(Graphics g) {
         try {
             Komorka[][] komorki = map.getMap();
+            int radius = 10;
             for (int i = 0; i < komorki.length; i++) {
                 for (int j = 0; j < komorki[0].length; j++) {
-                    if (komorki[i][j].getName() == "Trawa") {
-                        Image trawa = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\trawa.png").getImage();
-                        g.drawImage(trawa, i * 40, j * 40, null);
-                    } 
-                    else if (komorki[i][j].getName() == "Droga") {
-                        Image droga = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\droga.png").getImage();
-                        g.drawImage(droga, i * 40, j * 40, null);
-                    }
-                    else if (komorki[i][j].getName() == "Drzewo") {
-                        Image droga = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\drzewo.png").getImage();
-                        g.drawImage(droga, i * 40, j * 40, null);
-                    }
-                    else if (komorki[i][j].getName() == "Buraki") {
-                        Image droga = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\sloneczniki.png").getImage();
-                        g.drawImage(droga, i * 40, j * 40, null);
-                    }
-                    else if (komorki[i][j].getName() == "Kamien") {
-                        Image droga = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\Kamien.png").getImage();
-                        g.drawImage(droga, i * 40, j * 40, null);
-                    }
+                        Image pole = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\"+ komorki[i][j].getName().toLowerCase() + ".png").getImage();
+                        
+                        g.drawImage(pole, i * 40, j * 40, null);
+                        String[] names = {"Droga","Drzewo", "Trawa", "Kamien", "Dom"}; 
+                        if(!Arrays.asList(names).contains(komorki[i][j].getName())){
+                            float nawoz = (float) komorki[i][j].getNawoz();
+                            g.setColor(new Color((1-nawoz),nawoz,0.0f));
+                            g.fillOval((i+1) * 40 - radius, (j+1) * 40 - radius, radius, radius);
+                        }
+                      
                 }
             }
             

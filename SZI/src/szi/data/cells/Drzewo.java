@@ -14,10 +14,31 @@ import java.awt.Color;
 public class Drzewo implements Komorka{
     @Override
     public void cross() {}
+    
+    @Override
+    public double getNawoz() {
+        return 0;
+    }
 
     @Override
     public Color getColor() {
         return new Color(50,50,50);
+    }
+    
+    @Override
+    public double getNum() {
+        return 0;
+    }
+    
+    @Override
+    public void setCurrentObject(boolean isCurrentObject) {}
+    
+    @Override
+    public void fertilize(){}
+    
+    @Override
+    public boolean isCurrentObject() {
+        return false;
     }
 
     @Override
