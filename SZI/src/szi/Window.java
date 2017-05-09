@@ -1,6 +1,6 @@
 package szi;
 
-import NeuralNetwork2.NeuralNetwork;
+
 import szi.data.*;
 import javax.swing.*;
 import java.awt.*;
