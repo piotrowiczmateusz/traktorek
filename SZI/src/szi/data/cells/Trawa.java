@@ -64,4 +64,9 @@ public class Trawa implements Komorka {
     public String getName() {
         return "Trawa";
     }
+    
+    @Override
+    public String getImageName() {
+        return getName();
+    }
 }

@@ -120,12 +120,12 @@ class Backpropagation {
                 }
             }
 
-            //Używająć wyżej obliczonych błędów dla każdego neuronu uaktualniamy wagi sieci
+            //Używająć wyżej obliczonych błędów dla każdego neuronu uaktualniamy wagi synaps
             for(int j = layers.size() - 1; j > 0; j--) {
                 Layer layer = layers.get(j);
-
+                //przechodzimy każdy neuron w warstwie
                 for(Neuron neuron : layer.getNeurons()) {
-
+                    //dla każdego neuronu odczytujemy synapsy wychodzące do niego
                     for(Synapse synapse : neuron.getInputs()) {
 
                         double delta = learningRate * neuron.getError() * synapse.getSourceNeuron().getOutput();

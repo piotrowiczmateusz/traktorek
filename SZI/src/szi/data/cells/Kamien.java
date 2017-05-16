@@ -62,4 +62,9 @@ public class Kamien implements Komorka {
     public String getName() {
         return "Kamien";
     }
+    
+    @Override
+    public String getImageName() {
+        return getName();
+    }
 }

@@ -10,16 +10,20 @@ package szi;
  * @author s407332
  */
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.TimerTask;
+import javax.imageio.ImageIO;
 import szi.NeuralNetwork.NeuralNetwork;
 import szi.NeuralNetwork.runNetwork;
 
 public class Agent extends TimerTask {
 
- private Window window;
+    private Window window;
 
- public static final String WEST = "west";
+    public static final String WEST = "west";
 
     public static final String EAST = "east";
     public static final String NORTH = "north";
@@ -38,12 +42,13 @@ public class Agent extends TimerTask {
      
     runNetwork runnetwork = null;
     
+    
     @Override
     public void run() {
     }
 
     public Agent(int positionX, int positionY) {
-        icon = System.getProperty("user.dir") + "\\src\\graphics\\tractor-" + EAST + ".png";
+        icon = System.getProperty("user.dir") + "\\src\\graphics\\testSet\\tractor-" + EAST + ".png";
         this.positionX = positionX;
         this.positionY = positionY;
         
@@ -57,6 +62,18 @@ public class Agent extends TimerTask {
     public void addWindow(Window window) {
         this.window = window;
     }
+    
+    private static int[] getPixelData(BufferedImage img, int x, int y) {
+        int argb = img.getRGB(x, y);
+
+        int rgb[] = new int[] {
+            (argb >> 16) & 0xff, //red
+            (argb >>  8) & 0xff, //green
+            (argb      ) & 0xff  //blue
+        };
+        System.out.println("rgb: " + rgb[0] + " " + rgb[1] + " " + rgb[2]);
+        return rgb;
+    }
 
     public void moveAgent(String way) {
         if (way.equals(LEFT)) {
@@ -66,7 +83,7 @@ public class Agent extends TimerTask {
             rotation = (rotation + 1) % 4;
         }
         String absoluteDirection = LocalToAbsolute();
-        icon = System.getProperty("user.dir") + "/src/graphics/tractor-" + absoluteDirection + ".png";
+        icon = System.getProperty("user.dir") + "/src/graphics/testSet/tractor-" + absoluteDirection + ".png";
         if (way.equals(FORWARD) || way.equals(BACKWARD)) {
             int i = way.equals(FORWARD) ? 1 : -1;
             if (absoluteDirection.equals(Agent.NORTH) && positionY - i >= 0 && positionY - i < window.komorki[0].length) {
@@ -96,14 +113,12 @@ public class Agent extends TimerTask {
         
         System.out.println("Obecna pozycja: X: " + positionX + ", Y: " + positionY);
         if(window.komorki[positionX][positionY].isCurrentObject()){
-          double[] x = new double[2];
-          x[0] = window.komorki[positionX][positionY].getNum();
-          x[1] = window.komorki[positionX][positionY].getNawoz();
+          double[] x = runnetwork.neuralNetwork.getPixels("testSet\\" + window.komorki[positionX][positionY].getName());
           
           runnetwork.neuralNetwork.setInputs(x);
           double decisionValue = runnetwork.neuralNetwork.getOutput()[0];         
           System.out.println("Stan nawozu na określonym polu: " + window.komorki[positionX][positionY].getNawoz());
-          
+          System.out.println("Decyzja: " + decisionValue);
           if(decisionValue > 0.5){
               window.komorki[positionX][positionY].fertilize();
           }

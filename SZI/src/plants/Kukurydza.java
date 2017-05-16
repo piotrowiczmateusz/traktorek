@@ -17,6 +17,7 @@ public class Kukurydza implements Komorka{
     
     private double nawoz = Math.random();
     static Timer mTimer;
+    private String currentImage;
     private boolean currentObject;
     
     @Override
@@ -34,6 +35,7 @@ public class Kukurydza implements Komorka{
         public void run() {
             if(Kukurydza.this.nawoz > 0.02) {
                 Kukurydza.this.nawoz -= 0.02;
+                Kukurydza.this.currentImage = "kukurydza_" + + Math.round((Kukurydza.this.nawoz * 100) * 10) / 10.0;
             }
         }
     };
@@ -85,6 +87,11 @@ public class Kukurydza implements Komorka{
 
     @Override
     public String getName() {
-        return "Kukurydza";
+        return "Kukurydza_00";
+    }
+    
+    @Override
+    public String getImageName() {
+        return getName();
     }
 }

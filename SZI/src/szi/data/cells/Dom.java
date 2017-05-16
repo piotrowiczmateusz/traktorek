@@ -62,4 +62,9 @@ public class Dom implements Komorka{
     public String getName() {
         return "Dom";
     }
+    
+    @Override
+    public String getImageName() {
+        return getName();
+    }
 }

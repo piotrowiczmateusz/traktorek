@@ -27,15 +27,18 @@ public class Neuron implements Serializable {
         this.activationStrategy = activationStrategy;
         error = 0;
     }
-
+    
+    //dodawanie synapsy
     public void addInput(Synapse input) {
         inputs.add(input);
     }
-
+    
+    //zwrócenie listy synaps
     public List<Synapse> getInputs() {
         return this.inputs;
     }
-
+    
+    //zwrócenie wag synaps
     public double[] getWeights() {
         double[] weights = new double[inputs.size()];
 
@@ -47,14 +50,15 @@ public class Neuron implements Serializable {
 
         return weights;
     }
-
+    
+    //przeliczanie sumy wag
     private void calculateWeightedSum() {
         weightedSum = 0;
         for(Synapse synapse : inputs) {
             weightedSum += synapse.getWeight() * synapse.getSourceNeuron().getOutput();
         }
     }
-
+    
     public void activate() {
         calculateWeightedSum();
         output = activationStrategy.activate(weightedSum);

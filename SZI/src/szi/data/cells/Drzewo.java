@@ -60,4 +60,9 @@ public class Drzewo implements Komorka{
     public String getName() {
         return "Drzewo";
     }
+    
+    @Override
+    public String getImageName() {
+        return getName();
+    }
 }

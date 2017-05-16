@@ -39,18 +39,20 @@ public class Layer implements Serializable {
     public List<Neuron> getNeurons() {
         return this.neurons;
     }
-
+    
+    //dodwanie neuronu do warstwy
     public void addNeuron(Neuron neuron) {
 
         neurons.add(neuron);
 
         if(previousLayer != null) {
             for(Neuron previousLayerNeuron : previousLayer.getNeurons()) {
-                neuron.addInput(new Synapse(previousLayerNeuron, (Math.random() * 1) - 0.5)); //initialize with a random weight between -1 and 1
+                neuron.addInput(new Synapse(previousLayerNeuron, (Math.random() * 1) - 0.5)); // inicjalizacja z randomowymi wagami pomiędzy 1 i -1
             }
         }
     }
-
+    
+    //dodwanie neuronu z wagami do warstwy
     public void addNeuron(Neuron neuron, double[] weights) {
 
         neurons.add(neuron);
@@ -62,6 +64,7 @@ public class Layer implements Serializable {
             }
 
             else {
+                //wyciągamy wszystkie neurony z poprzedniej warstwy i dodajemy synapse z waga do określonego neuronu
                 List<Neuron> previousLayerNeurons = previousLayer.getNeurons();
                 for(int i = 0; i < previousLayerNeurons.size(); i++) {
                     neuron.addInput(new Synapse(previousLayerNeurons.get(i), weights[i]));
@@ -70,7 +73,7 @@ public class Layer implements Serializable {
 
         }
     }
-
+    //funkcja która uruchamia na każdym neuronie funkcje aktywacji wraz z przeliczniem sumy wag
     public void feedForward() {
 
         int biasCount = hasBias() ? 1 : 0;
@@ -79,19 +82,23 @@ public class Layer implements Serializable {
             neurons.get(i).activate();
         }
     }
-
+    
+    //zwracanie poprzedniej warstwy
     public Layer getPreviousLayer() {
         return previousLayer;
     }
-
+    
+    //ustawianie poprzedniej warstwy
     void setPreviousLayer(Layer previousLayer) {
         this.previousLayer = previousLayer;
     }
-
+    
+    //zwracanie następnej warstwy
     public Layer getNextLayer() {
         return nextLayer;
     }
-
+    
+    //ustawianie nowej warstwy
     void setNextLayer(Layer nextLayer) {
         this.nextLayer = nextLayer;
     }

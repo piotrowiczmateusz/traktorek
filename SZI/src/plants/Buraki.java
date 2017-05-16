@@ -17,13 +17,14 @@ public class Buraki implements Komorka{
     
     private double nawoz;
     static Timer mTimer;
+    private String currentImage;
     private boolean currentObject;
     
     public Buraki() {
         this.mTimer = new Timer();
         this.nawoz = Math.random();
         this.currentObject = false;
-        mTimer.scheduleAtFixedRate(mTask, 0, 6000);
+        mTimer.scheduleAtFixedRate(mTask, 0, 12000);
     }
     
     @Override
@@ -34,6 +35,7 @@ public class Buraki implements Komorka{
         public void run() {
             if(Buraki.this.nawoz > 0.05) {
                 Buraki.this.nawoz -= 0.05;
+                Buraki.this.currentImage = "buraki_" + String.valueOf(Math.round((Buraki.this.nawoz * 100) * 10) / 10.0).replaceAll(".","");
             }
         }
     };
@@ -85,6 +87,10 @@ public class Buraki implements Komorka{
 
     @Override
     public String getName() {
-        return "Buraki";
+        return "Buraki_00";
+    }
+    @Override
+    public String getImageName() {
+        return getName();
     }
 }

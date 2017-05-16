@@ -23,4 +23,5 @@ public interface Komorka {
     double getIncome();
     boolean isCrossable();
     String getName();
+    String getImageName();
 }

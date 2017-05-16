@@ -21,48 +21,60 @@ public class runNetwork {
     public runNetwork(){}
 
     public runNetwork(double learningRate, double momentum, double meanError) throws IOException {
+        //inicjalizowanie sieci neuronowej, warstwy wejścia, biasa wejściowego
         neuralNetwork = new NeuralNetwork("Traktor Network");
         Neuron inputBias = new Neuron(new LinearActivationStrategy());
         inputBias.setOutput(1);
 
         Layer inputLayer = new Layer(null, inputBias);
-
-        for(int i = 0; i < 2; i++) {
+        
+        //dodawanie nowego neuronu do warstwy wejścia (przypisanie każdemu neuronowi funkcji aktywacji sigmoid)
+        for(int i = 0; i < 4800; i++) {
             Neuron neuron = new Neuron(new SigmoidActivationStrategy());
             neuron.setOutput(0);
             inputLayer.addNeuron(neuron);
         }
-
+        
+        //inicjalizowanie warstwy ukrytej, wraz z biasem
         Neuron hiddenBias = new Neuron(new LinearActivationStrategy());
         hiddenBias.setOutput(1);
 
         Layer hiddenLayer = new Layer(inputLayer, hiddenBias);
-
+        
+        //ilość neuronów w warstwie ukrytej
         long numberOfHiddenNeurons = 13;
-
+        
+        //dodawanie neuronów do warstwy ukrytej(przypisanie każdemu neuronowi funkcji aktywacji sigmoid)
         for(int i = 0; i < numberOfHiddenNeurons; i++) {
             Neuron neuron = new Neuron(new SigmoidActivationStrategy());
             neuron.setOutput(0);
             hiddenLayer.addNeuron(neuron);
         }
-
+        
+        //inicjalizowanie warstwy wyjścia, dodwanie neuronów do warstwy wyjścia(przypisanie każdemu neuronowi funkcji aktywacji sigmoid)
         Layer outputLayer = new Layer(hiddenLayer);
 
         Neuron neuron = new Neuron(new SigmoidActivationStrategy());
         neuron.setOutput(0);
         outputLayer.addNeuron(neuron);
 
-
+        //dodwanie wszystkich utworzonych warstw do sieci neuronowej
         neuralNetwork.addLayer(inputLayer);
         neuralNetwork.addLayer(hiddenLayer);
         neuralNetwork.addLayer(outputLayer);
-
+        
+        //wprowadznie danych treningowych(wejściowych i wyjściowych)
+        //inicjalizacja klasy od propagacji wstecznej
+        //odpalenie funkcji trenującej korzystającej z algorytmu propagacji wstecznej
         trainingDataGenerator = new TrainingData(initInputs(),initOutputs());
         backpropagator = new Backpropagation(neuralNetwork, learningRate, momentum, 0);
         backpropagator.train(trainingDataGenerator, meanError);
     }
+    
+    //odczyt danych treningowych z pliku
     private static double[][] initInputs() throws IOException{
-        double[][] trainingData= new double [70][2];//= new String[10][];
+        double[][] trainingData= new double [20][4800];
+        NeuralNetwork n = new NeuralNetwork("Test");
         String FILE_PATH = "D:\\Projekty\\traktorek\\SZI\\src\\szi\\NeuralNetwork\\inputData1.csv";
         FileReader fileReader = new FileReader(FILE_PATH);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -70,12 +82,8 @@ public class runNetwork {
         try {
             String textLine = bufferedReader.readLine();
             do {
-                //System.out.println(textLine);
-                String text[] = null;
-                text = textLine.split(";");
-                for(int j=0; j<text.length; j++){
-                    trainingData[i][j]=Double.parseDouble(text[j]);
-                }
+                //String nazwa = null;
+                trainingData[i] = n.getPixels(textLine);
                 i++;
                 textLine = bufferedReader.readLine();
             } while(textLine != null);
@@ -87,7 +95,7 @@ public class runNetwork {
     }
 
     private static double[][] initOutputs() throws IOException{
-        double[][] labels = new double[70][1] ;//= new String[10][];
+        double[][] labels = new double[20][1] ;
         String FILE_PATH = "D:\\Projekty\\traktorek\\SZI\\src\\szi\\NeuralNetwork\\outputData1.csv";
         FileReader fileReader = new FileReader(FILE_PATH);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -95,7 +103,6 @@ public class runNetwork {
         try {
             String textLine = bufferedReader.readLine();
             do {
-                // System.out.println(textLine);
                 labels[i][0]=Double.parseDouble(textLine);
                 i++;
                 textLine = bufferedReader.readLine();

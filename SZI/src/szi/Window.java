@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.awt.image.FilteredImageSource;
 import java.awt.image.ImageFilter;
 import java.awt.image.ImageProducer;
@@ -17,6 +18,7 @@ import java.util.Arrays;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
+import javax.imageio.ImageIO;
 import plants.Buraki;
 
 
@@ -63,27 +65,21 @@ public class Window extends JFrame{
        time.run();
     }
 
+
     @Override
     public void paint(Graphics g) {
         try {
             Komorka[][] komorki = map.getMap();
-            int radius = 10;
             for (int i = 0; i < komorki.length; i++) {
                 for (int j = 0; j < komorki[0].length; j++) {
-                        Image pole = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\"+ komorki[i][j].getName().toLowerCase() + ".png").getImage();
+                        //System.out.println(System.getProperty("user.dir") + "\\src\\graphics\\"+ komorki[i][j].getImageName().toLowerCase() + ".png");
+                        Image pole = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\testSet\\"+ komorki[i][j].getImageName().toLowerCase() + ".png").getImage();
                         
                         g.drawImage(pole, i * 40, j * 40, null);
-                        String[] names = {"Droga","Drzewo", "Trawa", "Kamien", "Dom"}; 
-                        if(!Arrays.asList(names).contains(komorki[i][j].getName())){
-                            float nawoz = (float) komorki[i][j].getNawoz();
-                            g.setColor(new Color((1-nawoz),nawoz,0.0f));
-                            g.fillOval((i+1) * 40 - radius, (j+1) * 40 - radius, radius, radius);
-                        }
-                      
                 }
             }
             
-            Image house = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\domek.png").getImage();
+            Image house = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\testSet\\domek.png").getImage();
             g.drawImage(house, 0, 0, null);
             
             Image tractor = new ImageIcon(Agent.getIcon()).getImage();
