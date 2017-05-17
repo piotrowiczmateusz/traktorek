@@ -136,7 +136,7 @@ public class NeuralNetwork implements Serializable {
         double[][] pixelData;
         pixelData = new double [1600][3];
         try { 
-              System.out.println(System.getProperty("user.dir") + "\\src\\graphics\\"+ nazwa + ".png");
+              //System.out.println(System.getProperty("user.dir") + "\\src\\graphics\\"+ nazwa + ".png");
               img = ImageIO.read(new File(System.getProperty("user.dir") + "\\src\\graphics\\"+ nazwa + ".png"));
               pixelData = new double[img.getHeight() * img.getWidth()][3];
               int[] rgb;

@@ -72,8 +72,8 @@ public class Window extends JFrame{
             Komorka[][] komorki = map.getMap();
             for (int i = 0; i < komorki.length; i++) {
                 for (int j = 0; j < komorki[0].length; j++) {
-                        //System.out.println(System.getProperty("user.dir") + "\\src\\graphics\\"+ komorki[i][j].getImageName().toLowerCase() + ".png");
-                        Image pole = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\testSet\\"+ komorki[i][j].getImageName().toLowerCase() + ".png").getImage();
+                        //System.out.println(System.getProperty("user.dir") + "\\src\\graphics\\"+ komorki[i][j].getImageName()+ ".png");
+                        Image pole = new ImageIcon(System.getProperty("user.dir") + "\\src\\graphics\\testSet\\"+ komorki[i][j].getImageName() + ".png").getImage();
                         
                         g.drawImage(pole, i * 40, j * 40, null);
                 }

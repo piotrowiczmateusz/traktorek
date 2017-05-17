@@ -24,19 +24,32 @@ public class Buraki implements Komorka{
         this.mTimer = new Timer();
         this.nawoz = Math.random();
         this.currentObject = false;
-        mTimer.scheduleAtFixedRate(mTask, 0, 12000);
+        mTimer.scheduleAtFixedRate(mTask, 0, 6000);
     }
     
     @Override
     public void cross() {}
     
+    private double round(double d){
+        double dAbs = Math.abs(d);
+        int i = (int) dAbs;
+        double result = dAbs - (double) i;
+        if(result < 0.5){
+            return d<0 ? -i : i;            
+        }else{
+            return d<0 ? -(i+1) : i+1;          
+        }
+    }
+    
     private TimerTask mTask = new TimerTask() {
         @Override
         public void run() {
-            if(Buraki.this.nawoz > 0.05) {
-                Buraki.this.nawoz -= 0.05;
-                Buraki.this.currentImage = "buraki_" + String.valueOf(Math.round((Buraki.this.nawoz * 100) * 10) / 10.0).replaceAll(".","");
+            if(Buraki.this.nawoz < 0.95) {
+                Buraki.this.nawoz += 0.05;
+                
+                //System.out.println(Buraki.this.nawoz+ "," + (double) Math.round((Buraki.this.nawoz)*10)/10);
             }
+            Buraki.this.currentImage = ("buraki_" + (double) Math.round((Buraki.this.nawoz)*10)/10).replace(".","");
         }
     };
     
@@ -62,7 +75,8 @@ public class Buraki implements Komorka{
     
     @Override
     public void fertilize(){
-        this.nawoz = 1;
+        this.nawoz = 0;
+        Buraki.this.currentImage = ("buraki_" + (double) Math.round((Buraki.this.nawoz)*10)/10).replace(".","");
     }
 
     @Override
@@ -87,10 +101,10 @@ public class Buraki implements Komorka{
 
     @Override
     public String getName() {
-        return "Buraki_00";
+        return "Buraki";
     }
     @Override
     public String getImageName() {
-        return getName();
+        return Buraki.this.currentImage;
     }
 }
