@@ -27,16 +27,16 @@ public class Kukurydza implements Komorka{
         this.mTimer = new Timer();
         this.nawoz = Math.random();
         this.currentObject = false;
-        mTimer.scheduleAtFixedRate(mTask, 0, 4000);
+        mTimer.scheduleAtFixedRate(mTask, 0, 8000);
     }
     
     private TimerTask mTask = new TimerTask() {
         @Override
         public void run() {
-            if(Kukurydza.this.nawoz > 0.02) {
-                Kukurydza.this.nawoz -= 0.02;
-                Kukurydza.this.currentImage = "kukurydza_" + + Math.round((Kukurydza.this.nawoz * 100) * 10) / 10.0;
+            if(Kukurydza.this.nawoz < 0.98) {
+                Kukurydza.this.nawoz += 0.02;
             }
+            Kukurydza.this.currentImage = ("kukurydza_" + (double) Math.round((Kukurydza.this.nawoz)*10)/10).replace(".","");
         }
     };
     
@@ -52,7 +52,8 @@ public class Kukurydza implements Komorka{
     
     @Override
     public void fertilize(){
-        this.nawoz = 1;
+        this.nawoz = 0;
+        Kukurydza.this.currentImage = ("kukurydza_" + (double) Math.round((Kukurydza.this.nawoz)*10)/10).replace(".","");
     }
     
     @Override
@@ -87,11 +88,11 @@ public class Kukurydza implements Komorka{
 
     @Override
     public String getName() {
-        return "Kukurydza_00";
+        return "Kukurydza";
     }
     
     @Override
     public String getImageName() {
-        return getName();
+        return Kukurydza.this.currentImage;
     }
 }

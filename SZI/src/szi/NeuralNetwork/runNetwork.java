@@ -31,7 +31,7 @@ public class runNetwork {
         //dodawanie nowego neuronu do warstwy wejścia (przypisanie każdemu neuronowi funkcji aktywacji sigmoid)
         for(int i = 0; i < 4800; i++) {
             Neuron neuron = new Neuron(new SigmoidActivationStrategy());
-            neuron.setOutput(0);
+            //neuron.setOutput(0);
             inputLayer.addNeuron(neuron);
         }
         
@@ -42,12 +42,12 @@ public class runNetwork {
         Layer hiddenLayer = new Layer(inputLayer, hiddenBias);
         
         //ilość neuronów w warstwie ukrytej
-        long numberOfHiddenNeurons = 13;
+        long numberOfHiddenNeurons = 15;
         
         //dodawanie neuronów do warstwy ukrytej(przypisanie każdemu neuronowi funkcji aktywacji sigmoid)
         for(int i = 0; i < numberOfHiddenNeurons; i++) {
             Neuron neuron = new Neuron(new SigmoidActivationStrategy());
-            neuron.setOutput(0);
+            //neuron.setOutput(0);
             hiddenLayer.addNeuron(neuron);
         }
         
@@ -55,7 +55,7 @@ public class runNetwork {
         Layer outputLayer = new Layer(hiddenLayer);
 
         Neuron neuron = new Neuron(new SigmoidActivationStrategy());
-        neuron.setOutput(0);
+        //neuron.setOutput(0);
         outputLayer.addNeuron(neuron);
 
         //dodwanie wszystkich utworzonych warstw do sieci neuronowej
@@ -73,7 +73,7 @@ public class runNetwork {
     
     //odczyt danych treningowych z pliku
     private static double[][] initInputs() throws IOException{
-        double[][] trainingData= new double [22][4800];
+        double[][] trainingData = new double [170][4800];
         NeuralNetwork n = new NeuralNetwork("Test");
         String FILE_PATH = "D:\\Projekty\\traktorek\\SZI\\src\\szi\\NeuralNetwork\\inputData1.csv";
         FileReader fileReader = new FileReader(FILE_PATH);
@@ -95,7 +95,7 @@ public class runNetwork {
     }
 
     private static double[][] initOutputs() throws IOException{
-        double[][] labels = new double[22][1] ;
+        double[][] labels = new double[170][1] ;
         String FILE_PATH = "D:\\Projekty\\traktorek\\SZI\\src\\szi\\NeuralNetwork\\outputData1.csv";
         FileReader fileReader = new FileReader(FILE_PATH);
         BufferedReader bufferedReader = new BufferedReader(fileReader);

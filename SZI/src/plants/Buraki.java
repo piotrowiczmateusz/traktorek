@@ -24,22 +24,11 @@ public class Buraki implements Komorka{
         this.mTimer = new Timer();
         this.nawoz = Math.random();
         this.currentObject = false;
-        mTimer.scheduleAtFixedRate(mTask, 0, 6000);
+        mTimer.scheduleAtFixedRate(mTask, 0, 12000);
     }
     
     @Override
     public void cross() {}
-    
-    private double round(double d){
-        double dAbs = Math.abs(d);
-        int i = (int) dAbs;
-        double result = dAbs - (double) i;
-        if(result < 0.5){
-            return d<0 ? -i : i;            
-        }else{
-            return d<0 ? -(i+1) : i+1;          
-        }
-    }
     
     private TimerTask mTask = new TimerTask() {
         @Override

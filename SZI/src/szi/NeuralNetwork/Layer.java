@@ -47,7 +47,7 @@ public class Layer implements Serializable {
 
         if(previousLayer != null) {
             for(Neuron previousLayerNeuron : previousLayer.getNeurons()) {
-                neuron.addInput(new Synapse(previousLayerNeuron, (Math.random() * 1) - 0.5)); // inicjalizacja z randomowymi wagami pomiędzy 1 i -1
+                neuron.addInput(new Synapse(previousLayerNeuron, (((Math.random())*1)-0.5))); // inicjalizacja z randomowymi wagami pomiędzy 1 i -1
             }
         }
     }

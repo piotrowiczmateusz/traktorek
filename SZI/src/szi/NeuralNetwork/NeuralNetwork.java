@@ -34,7 +34,7 @@ public class NeuralNetwork implements Serializable {
         layers = new ArrayList<Layer>();
     }
 
-    /*public NeuralNetwork copy() {
+    public NeuralNetwork copy() {
         NeuralNetwork copy = new NeuralNetwork(this.name);
 
         Layer previousLayer = null;
@@ -81,7 +81,7 @@ public class NeuralNetwork implements Serializable {
         }
 
         return copy;
-    }*/
+    }
     
     //Dodawanie nowej warstwy do sieci
     public void addLayer(Layer layer) {
@@ -195,7 +195,7 @@ public class NeuralNetwork implements Serializable {
             outputs[i] = neuron.getOutput();
             i++;
         }
-
+        
         return outputs;
     }
     
