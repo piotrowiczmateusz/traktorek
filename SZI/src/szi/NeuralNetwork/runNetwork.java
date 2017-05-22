@@ -73,7 +73,7 @@ public class runNetwork {
     
     //odczyt danych treningowych z pliku
     private static double[][] initInputs() throws IOException{
-        double[][] trainingData = new double [170][4800];
+        double[][] trainingData = new double [168][4800];
         NeuralNetwork n = new NeuralNetwork("Test");
         String FILE_PATH = "D:\\Projekty\\traktorek\\SZI\\src\\szi\\NeuralNetwork\\inputData1.csv";
         FileReader fileReader = new FileReader(FILE_PATH);
@@ -95,7 +95,7 @@ public class runNetwork {
     }
 
     private static double[][] initOutputs() throws IOException{
-        double[][] labels = new double[170][1] ;
+        double[][] labels = new double[168][1] ;
         String FILE_PATH = "D:\\Projekty\\traktorek\\SZI\\src\\szi\\NeuralNetwork\\outputData1.csv";
         FileReader fileReader = new FileReader(FILE_PATH);
         BufferedReader bufferedReader = new BufferedReader(fileReader);

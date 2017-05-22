@@ -113,7 +113,7 @@ public class Agent extends TimerTask {
         
         System.out.println("Obecna pozycja: X: " + positionX + ", Y: " + positionY);
         if(window.komorki[positionX][positionY].isCurrentObject()){
-          //System.out.println("testSet\\" + window.komorki[positionX][positionY].getImageName());
+          System.out.println("testSet\\" + window.komorki[positionX][positionY].getImageName());
           double[] x = runnetwork.neuralNetwork.getPixels("testSet\\" + window.komorki[positionX][positionY].getImageName());
           
           runnetwork.neuralNetwork.setInputs(x);

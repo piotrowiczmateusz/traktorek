@@ -3,15 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Projekty/traktorek/SZI/src/szi/Window.java</file>
             <file>file:/D:/Projekty/traktorek/SZI/src/szi/NeuralNetwork/Backpropagation.java</file>
-            <file>file:/D:/Projekty/traktorek/SZI/src/plants/Kukurydza.java</file>
             <file>file:/D:/Projekty/traktorek/SZI/src/szi/NeuralNetwork/runNetwork.java</file>
             <file>file:/D:/Projekty/traktorek/SZI/src/szi/NeuralNetwork/inputData1.csv</file>
             <file>file:/D:/Projekty/traktorek/SZI/src/szi/NeuralNetwork/outputData1.csv</file>
             <file>file:/D:/Projekty/traktorek/SZI/src/szi/NeuralNetwork/NeuralNetwork.java</file>
             <file>file:/D:/Projekty/traktorek/SZI/src/plants/Buraki.java</file>
+            <file>file:/D:/Projekty/traktorek/SZI/src/szi/NeuralNetwork/Layer.java</file>
+            <file>file:/D:/Projekty/traktorek/SZI/src/szi/NeuralNetwork/Neuron.java</file>
             <file>file:/D:/Projekty/traktorek/SZI/src/szi/Agent.java</file>
+            <file>file:/D:/Projekty/traktorek/SZI/src/szi/NeuralNetwork/SigmoidActivationStrategy.java</file>
         </group>
     </open-files>
 </project-private>
