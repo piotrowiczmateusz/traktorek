@@ -1,0 +1,38 @@
+@relation weather
+
+@attribute paliwo numeric
+@attribute odl_ros numeric
+@attribute odl_zb numeric
+@attribute roslina {burak, kukurydza, droga}
+@attribute dojrzala {true, false}
+@attribute czas numeric
+@attribute play {yes, no}
+
+@data
+100, 21, 20, burak, false, 10, no
+100, 21, 20, burak, false, 6, no
+100, 21, 20, burak, false, 5, yes
+100, 21, 20, burak, false, 4, yes
+100, 21, 20, burak, false, 1, yes
+100, 21, 20, kukurydza, false, 10, no
+100, 21, 20, kukurydza, false, 6, no
+100, 21, 20, kukurydza, false, 5, yes
+100, 21, 20, kukurydza, false, 4, yes
+100, 21, 20, kukurydza, false, 1, yes
+100, 21, 20, droga, false, 10, no
+100, 21, 20, droga, false, 6, no
+100, 21, 20, droga, false, 5, no
+100, 21, 20, droga, false, 4, no
+100, 21, 20, droga, false, 1, no
+100, 21, 20, burak, true, 0, yes
+100, 21, 20, kukurydza, true, 0, yes
+100, 21, 20, droga, true, 0, no
+25, 21, 20, burak, true, 0, no
+25, 25, 2, burak, true, 0, no
+35, 20, 16, burak, true, 0, no
+12, 2, 10, burak, true, 0, yes
+12, 9, 2, burak, true, 0, yes
+50, 2, 5, burak, true, 0, yes
+32, 1, 8, burak, true, 0, yes
+32, 20, 13, burak, true, 0, yes
+30, 10, 21, burak, true, 0, no
