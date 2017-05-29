@@ -16,6 +16,7 @@ import szi.data.Komorka;
 public class Kukurydza implements Komorka{
     
     private double nawoz = Math.random();
+    private double plantMaturity;
     static Timer mTimer;
     private String currentImage;
     private boolean currentObject;
@@ -26,6 +27,7 @@ public class Kukurydza implements Komorka{
     public Kukurydza() {
         this.mTimer = new Timer();
         this.nawoz = Math.random();
+        this.plantMaturity = Math.random();
         this.currentObject = false;
         mTimer.scheduleAtFixedRate(mTask, 0, 8000);
     }
@@ -94,5 +96,10 @@ public class Kukurydza implements Komorka{
     @Override
     public String getImageName() {
         return Kukurydza.this.currentImage;
+    }
+    
+    @Override
+    public double getPlantMaturity(){
+        return plantMaturity;
     }
 }

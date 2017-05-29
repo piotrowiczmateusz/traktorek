@@ -63,8 +63,14 @@ public class Droga implements Komorka {
     public String getName() {
         return "Droga";
     }
+    
     @Override
     public String getImageName() {
         return getName();
+    }
+    
+    @Override
+    public double getPlantMaturity(){
+        return 0;
     }
 }

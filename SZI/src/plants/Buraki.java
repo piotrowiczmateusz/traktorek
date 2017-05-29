@@ -16,6 +16,7 @@ import java.util.TimerTask;
 public class Buraki implements Komorka{
     
     private double nawoz;
+    private double plantMaturity;
     static Timer mTimer;
     private String currentImage;
     private boolean currentObject;
@@ -23,6 +24,7 @@ public class Buraki implements Komorka{
     public Buraki() {
         this.mTimer = new Timer();
         this.nawoz = Math.random();
+        this.plantMaturity = Math.random();
         this.currentObject = false;
         mTimer.scheduleAtFixedRate(mTask, 0, 12000);
     }
@@ -92,8 +94,14 @@ public class Buraki implements Komorka{
     public String getName() {
         return "Buraki";
     }
+    
     @Override
     public String getImageName() {
         return Buraki.this.currentImage;
+    }
+    
+    @Override
+    public double getPlantMaturity(){
+        return plantMaturity;
     }
 }

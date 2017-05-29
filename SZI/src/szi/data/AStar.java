@@ -66,14 +66,15 @@ public class AStar {
 
     public static void runAStar(int startX, int startY, int rotation, int endX, int endY) {
         stepsList = getStepsList(startX, startY, rotation, endX, endY);
-        System.out.println("Lista kroków:");
+        /*System.out.println("Lista kroków:");
         for (String step : stepsList
                 ) {
             System.out.println(step);
         }
         System.out.println("Gotowy.");
+        */
         isRunning = true;
-
+        
     }
 
     private static double heuristicCost(Position position, int goalX, int goalY) {

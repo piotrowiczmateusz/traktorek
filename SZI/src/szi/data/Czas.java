@@ -63,7 +63,7 @@ public class Czas extends TimerTask {
     private void moveAgent() {
         String direction;
         direction = tab.get(positionInTab);
-        System.out.println("Obecny kierunek: " + direction);
+        //System.out.println("Obecny kierunek: " + direction);
         if (direction.equals(Agent.RIGHT)) {
             timeWindow.agent.moveAgent(Agent.RIGHT);
             positionInTab++;

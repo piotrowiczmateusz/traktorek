@@ -39,19 +39,42 @@ public class Agent extends TimerTask {
     int positionX;
     int positionY;
     int rotation;
-     
     runNetwork runnetwork = null;
+    
+    String[] fuel = new String[5];  
+    String currentFuel;
+    int counter = 0;   
     
     
     @Override
     public void run() {
     }
 
+    public void initFuelValues(){
+        fuel[0] = "full";
+        fuel[1] = "much";
+        fuel[2] = "half";
+        fuel[3] = "little";
+        fuel[4] = "lack";
+        
+        currentFuel = fuel[counter];
+    }
+    
+    public void changeFuelLvl(){
+        counter++;
+        currentFuel = fuel[counter];
+    }
+    
+    public void refuel(){
+        counter = 0;
+        currentFuel = fuel[counter];
+    }
+    
     public Agent(int positionX, int positionY) {
         icon = System.getProperty("user.dir") + "\\src\\graphics\\testSet\\tractor-" + EAST + ".png";
         this.positionX = positionX;
         this.positionY = positionY;
-        
+        initFuelValues();        
         try {
             runnetwork = new runNetwork(0.2, 0.6, 0.12);
         } catch (IOException e) {
@@ -111,15 +134,15 @@ public class Agent extends TimerTask {
             }
         }
         
-        System.out.println("Obecna pozycja: X: " + positionX + ", Y: " + positionY);
+       // System.out.println("Obecna pozycja: X: " + positionX + ", Y: " + positionY);
         if(window.komorki[positionX][positionY].isCurrentObject()){
-          System.out.println("testSet\\" + window.komorki[positionX][positionY].getImageName());
+         // System.out.println("testSet\\" + window.komorki[positionX][positionY].getImageName());
           double[] x = runnetwork.neuralNetwork.getPixels("testSet\\" + window.komorki[positionX][positionY].getImageName());
           
           runnetwork.neuralNetwork.setInputs(x);
           double decisionValue = runnetwork.neuralNetwork.getOutput()[0];         
-          System.out.println("Stan nawozu na określonym polu: " + (1-(window.komorki[positionX][positionY].getNawoz())));
-          System.out.println("Decyzja: " + decisionValue);
+         // System.out.println("Stan nawozu na określonym polu: " + (1-(window.komorki[positionX][positionY].getNawoz())));
+         // System.out.println("Decyzja: " + decisionValue);
           if(decisionValue > 0.5){
               window.komorki[positionX][positionY].fertilize();
           }
@@ -170,6 +193,10 @@ public class Agent extends TimerTask {
     
     public int getRotation() {
         return rotation;
+    }
+    
+    public String getFuelLvl(){
+        return currentFuel;
     }
 
     public void setRotation(int rotation) {

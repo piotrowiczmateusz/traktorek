@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DecisionTree type="out">
+	<Test attribute="maturity" operator="=" value="developed">
+		<Test attribute="surface" operator="=" value="Buraki">
+			<Test attribute="fuel" operator="=" value="full">
+				<Output decision="yes" info="(4.0)"/>
+			</Test>
+			<Test attribute="fuel" operator="=" value="much">
+				<Test attribute="distance" operator="=" value="far">
+					<Output decision="no" info="(2.0)"/>
+				</Test>
+				<Test attribute="distance" operator="=" value="medium">
+					<Output decision="yes" info="(3.0)"/>
+				</Test>
+				<Test attribute="distance" operator="=" value="near">
+					<Output decision="yes" info="(1.0)"/>
+				</Test>
+			</Test>
+			<Test attribute="fuel" operator="=" value="half">
+				<Test attribute="distance" operator="=" value="far">
+					<Output decision="no" info="(1.0)"/>
+				</Test>
+				<Test attribute="distance" operator="=" value="medium">
+					<Output decision="no" info="(2.0)"/>
+				</Test>
+				<Test attribute="distance" operator="=" value="near">
+					<Output decision="yes" info="(2.0)"/>
+				</Test>
+			</Test>
+			<Test attribute="fuel" operator="=" value="little">
+				<Output decision="no" info="(1.0)"/>
+			</Test>
+			<Test attribute="fuel" operator="=" value="lack">
+				<Output decision="no" info="(1.0)"/>
+			</Test>
+		</Test>
+		<Test attribute="surface" operator="=" value="Kukurydza">
+			<Test attribute="fuel" operator="=" value="full">
+				<Output decision="yes" info="(4.0)"/>
+			</Test>
+			<Test attribute="fuel" operator="=" value="much">
+				<Test attribute="distance" operator="=" value="far">
+					<Output decision="no" info="(2.0)"/>
+				</Test>
+				<Test attribute="distance" operator="=" value="medium">
+					<Output decision="yes" info="(3.0)"/>
+				</Test>
+				<Test attribute="distance" operator="=" value="near">
+					<Output decision="yes" info="(1.0)"/>
+				</Test>
+			</Test>
+			<Test attribute="fuel" operator="=" value="half">
+				<Test attribute="distance" operator="=" value="far">
+					<Output decision="no" info="(1.0)"/>
+				</Test>
+				<Test attribute="distance" operator="=" value="medium">
+					<Output decision="no" info="(2.0)"/>
+				</Test>
+				<Test attribute="distance" operator="=" value="near">
+					<Output decision="yes" info="(2.0)"/>
+				</Test>
+			</Test>
+			<Test attribute="fuel" operator="=" value="little">
+				<Output decision="no" info="(1.0)"/>
+			</Test>
+			<Test attribute="fuel" operator="=" value="lack">
+				<Output decision="no" info="(1.0)"/>
+			</Test>
+		</Test>
+		<Test attribute="surface" operator="=" value="Droga">
+			<Output decision="no" info="(7.0)"/>
+		</Test>
+	</Test>
+	<Test attribute="maturity" operator="=" value="well">
+		<Test attribute="fuel" operator="=" value="full">
+			<Output decision="yes" info="(8.0)"/>
+		</Test>
+		<Test attribute="fuel" operator="=" value="much">
+			<Test attribute="distance" operator="=" value="far">
+				<Output decision="no" info="(2.0)"/>
+			</Test>
+			<Test attribute="distance" operator="=" value="medium">
+				<Test attribute="surface" operator="=" value="Buraki">
+					<Output decision="yes" info="(3.0)"/>
+				</Test>
+				<Test attribute="surface" operator="=" value="Kukurydza">
+					<Output decision="yes" info="(3.0)"/>
+				</Test>
+				<Test attribute="surface" operator="=" value="Droga">
+					<Output decision="no" info="(2.0)"/>
+				</Test>
+			</Test>
+			<Test attribute="distance" operator="= near" value="">
+				<Test attribute="surface" operator="=" value="Buraki">
+					<Output decision="yes" info="(3.0)"/>
+				</Test>
+				<Test attribute="surface" operator="=" value="Kukurydza">
+					<Output decision="yes" info="(3.0)"/>
+				</Test>
+				<Test attribute="surface" operator="=" value="Droga">
+					<Output decision="no" info="(2.0)"/>
+				</Test>
+			</Test>
+		</Test>
+		<Test attribute="fuel" operator="=" value="half">
+			<Test attribute="distance" operator="=" value="far">
+				<Output decision="no" info="(2.0)"/>
+			</Test>
+			<Test attribute="distance" operator="=" value="medium">
+				<Output decision="no" info="(2.0)"/>
+			</Test>
+			<Test attribute="distance" operator="= near" value="">
+				<Test attribute="surface" operator="=" value="Buraki">
+					<Output decision="yes" info="(3.0)"/>
+				</Test>
+				<Test attribute="surface" operator="=" value="Kukurydza">
+					<Output decision="yes" info="(3.0)"/>
+				</Test>
+				<Test attribute="surface" operator="=" value="Droga">
+					<Output decision="no" info="(2.0)"/>
+				</Test>
+			</Test>
+		</Test>
+		<Test attribute="fuel" operator="=" value="little">
+			<Output decision="no" info="(1.0)"/>
+		</Test>
+		<Test attribute="fuel" operator="=" value="lack">
+			<Output decision="no" info="(1.0)"/>
+		</Test>
+	</Test>
+	<Test attribute="maturity" operator="=" value="medium">
+		<Output decision="no" info="(8.0)"/>
+	</Test>
+	<Test attribute="maturity" operator="=" value="poorly">
+		<Output decision="no" info="(8.0)"/>
+	</Test>
+</DecisionTree>

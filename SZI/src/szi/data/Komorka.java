@@ -24,4 +24,5 @@ public interface Komorka {
     boolean isCrossable();
     String getName();
     String getImageName();
+    double getPlantMaturity();
 }

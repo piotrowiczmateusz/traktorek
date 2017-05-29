@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 package szi.data.cells;
+import java.awt.*;
 import szi.data.Komorka;
-import java.awt.Color;
 
 /**
  *
- * @author 407332
+ * @author s407332
  */
-public class Dom implements Komorka{
+public class Paliwo implements Komorka {
+
     @Override
     public void cross() {}
     
@@ -45,7 +46,7 @@ public class Dom implements Komorka{
 
     @Override
     public double getCrossingCost() {
-        return 1000;
+        return 3;
     }
 
     @Override
@@ -55,12 +56,12 @@ public class Dom implements Komorka{
 
     @Override
     public boolean isCrossable() {
-        return false;
+        return true;
     }
 
     @Override
     public String getName() {
-        return "Dom";
+        return "Paliwo";
     }
     
     @Override

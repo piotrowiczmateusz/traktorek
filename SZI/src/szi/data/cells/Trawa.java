@@ -69,4 +69,9 @@ public class Trawa implements Komorka {
     public String getImageName() {
         return getName();
     }
+    
+    @Override
+    public double getPlantMaturity(){
+        return 0;
+    }
 }
