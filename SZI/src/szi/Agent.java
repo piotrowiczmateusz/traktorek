@@ -40,6 +40,7 @@ public class Agent extends TimerTask {
     int positionY;
     int rotation;
     runNetwork runnetwork = null;
+    runNetwork runnetworkRoad = null;
     
     String[] fuel = new String[9];  
     String currentFuel;
@@ -114,7 +115,8 @@ public class Agent extends TimerTask {
         initFuelValues();
         initWaterValues();         
         try {
-            runnetwork = new runNetwork(0.2, 0.6, 0.12);
+            runnetworkRoad = new runNetwork(0.25, 0.6, 0.2, "Droga");
+            runnetwork = new runNetwork(0.2, 0.6, 0.12, "Rosliny");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -174,14 +176,37 @@ public class Agent extends TimerTask {
         
         if(window.komorki[positionX][positionY].isCurrentObject()){
 
-          double[] x = runnetwork.neuralNetwork.getPixels("testSet\\" + window.komorki[positionX][positionY].getImageName());       
-          runnetwork.neuralNetwork.setInputs(x);
-          double decisionValue = runnetwork.neuralNetwork.getOutput()[0];         
-       
-          if(decisionValue > 0.5){
-              window.komorki[positionX][positionY].fertilize();
-          }
-          window.komorki[positionX][positionY].setCurrentObject(false);
+            if(window.komorki[positionX][positionY].getName() == "Droga")
+            {
+                double[] x = runnetwork.neuralNetwork.getPixels("testSet\\" + window.komorki[positionX][positionY].getImageName());
+
+                runnetworkRoad.neuralNetwork.setInputs(x);
+                double decisionRoadValue = runnetworkRoad.neuralNetwork.getOutput()[0]; 
+                double rs = 0.0;
+                double rm = 0.5;
+                double rb = 1.0;
+                double rsResult = 1.0 - Math.abs(rs - decisionRoadValue);                
+                double rmResult = 1.0 - Math.abs(rm - decisionRoadValue);
+                double rbResult = 1.0 - Math.abs(rb - decisionRoadValue);
+
+                String nameOfRoad="";
+                if((rsResult > rmResult) && (rsResult > rbResult)) nameOfRoad = "drodze suchej";
+                if((rmResult > rsResult) && (rmResult > rbResult)) nameOfRoad = "drodze mokrej";
+                if((rbResult > rsResult) && (rbResult > rmResult)) nameOfRoad = "błocie";
+                System.out.println("Traktor stoi na: " + nameOfRoad);
+            }
+            else
+            {
+                double[] x = runnetwork.neuralNetwork.getPixels("testSet\\" + window.komorki[positionX][positionY].getImageName());
+
+                runnetwork.neuralNetwork.setInputs(x);
+                double decisionValue = runnetwork.neuralNetwork.getOutput()[0];         
+                if(decisionValue > 0.5){
+                    window.komorki[positionX][positionY].fertilize();
+                }
+            }
+            window.komorki[positionX][positionY].setCurrentObject(false);
+
         }
         repaintGraphic();
     }

@@ -5,6 +5,8 @@
  */
 package szi.data.cells;
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 import szi.data.Komorka;
 
 /**
@@ -13,6 +15,41 @@ import szi.data.Komorka;
  */
 public class Droga implements Komorka {
 
+    static Timer mTimer;
+    private String currentImage;
+    private double woda;
+    private boolean currentObject;
+    
+    public Droga() {
+        this.mTimer = new Timer();
+        this.currentObject = false;
+        this.woda = Math.random();
+        mTimer.scheduleAtFixedRate(mTask, 0, 10000);
+    }
+    
+    private TimerTask mTask = new TimerTask() {
+        @Override
+        public void run() {
+            if(Droga.this.woda <= 0.0) {
+                Droga.this.woda = 1.0;
+                Droga.this.currentImage = ("bloto_" + (double) Math.round((Droga.this.woda)*10)/10).replace(".","");
+            }
+            if((Droga.this.woda <= 0.55)&&(Droga.this.woda > 0)) {
+                Droga.this.woda -= 0.05;
+                if(Droga.this.woda<0) Droga.this.woda = 0.0;
+                Droga.this.currentImage = ("droga-sucha_" + (double) Math.round((Droga.this.woda)*10)/10).replace(".","");
+            }
+            if((Droga.this.woda <= 0.7)&&(Droga.this.woda > 0.55)) {
+                Droga.this.woda -= 0.05;
+                Droga.this.currentImage = ("droga-mokra_" + (double) Math.round((Droga.this.woda)*10)/10).replace(".","");
+            }
+            if((Droga.this.woda <= 1.0)&&(Droga.this.woda > 0.7)) {
+                Droga.this.woda -= 0.05;
+                Droga.this.currentImage = ("bloto_" + (double) Math.round((Droga.this.woda)*10)/10).replace(".","");
+            }
+        }
+    };
+    
     @Override
     public void cross() {}
     
@@ -23,7 +60,7 @@ public class Droga implements Komorka {
     
     @Override
     public void setCurrentObject(boolean isCurrentObject) {
-        
+        this.currentObject = isCurrentObject;
     }
     
     @Override
@@ -66,7 +103,7 @@ public class Droga implements Komorka {
     
     @Override
     public String getImageName() {
-        return getName();
+        return Droga.this.currentImage;
     }
     
     @Override

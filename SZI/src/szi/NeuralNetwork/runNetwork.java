@@ -20,9 +20,14 @@ public class runNetwork {
     
     public runNetwork(){}
 
-    public runNetwork(double learningRate, double momentum, double meanError) throws IOException {
+    public runNetwork(double learningRate, double momentum, double meanError, String name) throws IOException {
         //inicjalizowanie sieci neuronowej, warstwy wejścia, biasa wejściowego
-        neuralNetwork = new NeuralNetwork("Traktor Network");
+        if(name == "Droga"){
+            neuralNetwork = new NeuralNetwork("Droga Network");
+        }
+        else if(name == "Rosliny"){
+            neuralNetwork = new NeuralNetwork("Traktor Network");
+        }
         Neuron inputBias = new Neuron(new LinearActivationStrategy());
         inputBias.setOutput(1);
 
@@ -66,7 +71,12 @@ public class runNetwork {
         //wprowadznie danych treningowych(wejściowych i wyjściowych)
         //inicjalizacja klasy od propagacji wstecznej
         //odpalenie funkcji trenującej korzystającej z algorytmu propagacji wstecznej
-        trainingDataGenerator = new TrainingData(initInputs(),initOutputs());
+        if(name == "Droga") {
+            trainingDataGenerator = new TrainingData(initInputsRoad(),initOutputsRoad());
+        }
+        else if(name == "Rosliny") {
+            trainingDataGenerator = new TrainingData(initInputs(),initOutputs());
+        }
         backpropagator = new Backpropagation(neuralNetwork, learningRate, momentum, 0);
         backpropagator.train(trainingDataGenerator, meanError);
     }
@@ -75,7 +85,8 @@ public class runNetwork {
     private static double[][] initInputs() throws IOException{
         double[][] trainingData = new double [168][4800];
         NeuralNetwork n = new NeuralNetwork("Test");
-        String FILE_PATH = "C:\\Users\\Mateusz\\Documents\\traktorek\\SZI\\src\\szi\\NeuralNetwork\\inputData1.csv";
+        String FILE_PATH = System.getProperty("user.dir") + "\\src\\szi\\NeuralNetwork\\inputData1.csv";
+
         FileReader fileReader = new FileReader(FILE_PATH);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         int i = 0;
@@ -93,10 +104,52 @@ public class runNetwork {
         }
         return trainingData;
     }
-
+    
+    //odczyt danych treningowych z pliku
+    private static double[][] initInputsRoad() throws IOException{
+        double[][] trainingData = new double [130][4800];
+        NeuralNetwork n = new NeuralNetwork("Test");
+        String FILE_PATH = System.getProperty("user.dir") + "\\src\\szi\\NeuralNetwork\\inputData2.csv";
+        FileReader fileReader = new FileReader(FILE_PATH);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        int i = 0;
+        try {
+            String textLine = bufferedReader.readLine();
+            do {
+                trainingData[i] = n.getPixels(textLine);
+                i++;
+                textLine = bufferedReader.readLine();
+            } while(textLine != null);
+        }
+        finally{
+            bufferedReader.close();
+        }
+        return trainingData;
+    }
+    
     private static double[][] initOutputs() throws IOException{
         double[][] labels = new double[168][1] ;
-        String FILE_PATH = "C:\\Users\\Mateusz\\Documents\\traktorek\\SZI\\src\\szi\\NeuralNetwork\\outputData1.csv";
+        String FILE_PATH = System.getProperty("user.dir") + "\\src\\szi\\NeuralNetwork\\outputData1.csv";
+        FileReader fileReader = new FileReader(FILE_PATH);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        int i = 0;
+        try {
+            String textLine = bufferedReader.readLine();
+            do {
+                labels[i][0]=Double.parseDouble(textLine);
+                i++;
+                textLine = bufferedReader.readLine();
+            } while(textLine != null);
+        }
+        finally{
+            bufferedReader.close();
+        }
+        return labels;
+    }
+    
+    private static double[][] initOutputsRoad() throws IOException{
+        double[][] labels = new double[130][1] ;
+        String FILE_PATH = System.getProperty("user.dir") + "\\src\\szi\\NeuralNetwork\\outputData2.csv";
         FileReader fileReader = new FileReader(FILE_PATH);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         int i = 0;
