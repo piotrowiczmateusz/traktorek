@@ -45,6 +45,9 @@ public class Agent extends TimerTask {
     String currentFuel;
     int counter = 0;   
     
+    String[] water = new String[9];  
+    String currentWater;
+    int counterWater = 0;   
     
     @Override
     public void run() {
@@ -60,9 +63,32 @@ public class Agent extends TimerTask {
         currentFuel = fuel[counter];
     }
     
+    public void initWaterValues(){
+        water[0] = "full";
+        water[1] = "full";
+        water[2] = "much";
+        water[3] = "much";
+        water[4] = "half";
+        water[5] = "half";
+        water[6] = "little";
+        water[7] = "little";
+        water[8] = "lack";
+        
+        currentWater = water[counterWater];
+    }
+    
     public void changeFuelLvl(){
-        counter++;
-        currentFuel = fuel[counter];
+        if(currentFuel != "lack") {
+            counter++;
+            currentFuel = fuel[counter];
+        }  
+    }
+    
+    public void changeWaterLvl(){
+        if(currentWater != "lack") {
+            counterWater++;
+            currentWater = water[counterWater];
+        }
     }
     
     public void refuel(){
@@ -70,11 +96,17 @@ public class Agent extends TimerTask {
         currentFuel = fuel[counter];
     }
     
+    public void refill(){
+        counterWater = 0;
+        currentWater = water[counterWater];
+    }
+    
     public Agent(int positionX, int positionY) {
         icon = System.getProperty("user.dir") + "\\src\\graphics\\testSet\\tractor-" + EAST + ".png";
         this.positionX = positionX;
         this.positionY = positionY;
-        initFuelValues();        
+        initFuelValues();
+        initWaterValues();         
         try {
             runnetwork = new runNetwork(0.2, 0.6, 0.12);
         } catch (IOException e) {
@@ -197,6 +229,10 @@ public class Agent extends TimerTask {
     
     public String getFuelLvl(){
         return currentFuel;
+    }
+    
+    public String getWaterLvl(){
+        return currentWater;
     }
 
     public void setRotation(int rotation) {

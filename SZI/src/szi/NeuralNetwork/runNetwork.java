@@ -75,7 +75,7 @@ public class runNetwork {
     private static double[][] initInputs() throws IOException{
         double[][] trainingData = new double [168][4800];
         NeuralNetwork n = new NeuralNetwork("Test");
-        String FILE_PATH = "D:\\Projekty\\traktorek\\SZI\\src\\szi\\NeuralNetwork\\inputData1.csv";
+        String FILE_PATH = "C:\\Users\\Mateusz\\Documents\\traktorek\\SZI\\src\\szi\\NeuralNetwork\\inputData1.csv";
         FileReader fileReader = new FileReader(FILE_PATH);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         int i = 0;
@@ -96,7 +96,7 @@ public class runNetwork {
 
     private static double[][] initOutputs() throws IOException{
         double[][] labels = new double[168][1] ;
-        String FILE_PATH = "D:\\Projekty\\traktorek\\SZI\\src\\szi\\NeuralNetwork\\outputData1.csv";
+        String FILE_PATH = "C:\\Users\\Mateusz\\Documents\\traktorek\\SZI\\src\\szi\\NeuralNetwork\\outputData1.csv";
         FileReader fileReader = new FileReader(FILE_PATH);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         int i = 0;
