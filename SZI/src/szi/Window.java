@@ -122,13 +122,13 @@ public class Window extends JFrame{
         addMouseListener(new MouseAdapter() { 
             public void mousePressed(MouseEvent me) { 
                 try {            
-                    System.out.println("====================");
+                    System.out.println("\n========================================");
                     System.out.println("Tryb: " + MODE);
                     destinationX = toIntExact(me.getX()/40);
                     destinationY = toIntExact(me.getY()/40);
                     window.komorki[destinationX][destinationY].setCurrentObject(true);
                     
-                    runTraktorek();        
+                    runTraktorek();  
                 } catch (SAXException ex) {
                     Logger.getLogger(Window.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -233,7 +233,7 @@ public class Window extends JFrame{
         System.out.println("Nawierzchnia: " + surface);
         checkPlantMaturity(window.komorki[destinationX][destinationY].getPlantMaturity()); // maturity
         
-        System.out.println("-------PARSER-------");
+        System.out.println("---------------PARSER---------------");
         getDecision(fuel, distance, surface, plantMaturity);
         agent.changeFuelLvl();
         fuel = agent.getFuelLvl(); 
@@ -263,7 +263,7 @@ public class Window extends JFrame{
         System.out.println("Nawierzchnia: " + surface);
         checkPlantMaturity(window.komorki[destinationX][destinationY].getPlantMaturity()); // maturity
         checkWeather();
-        System.out.println("-------PARSER-------");
+        System.out.println("---------------PARSER---------------");
         getDecisionWater(fuel, water, distance, distanceWater, surface, plantMaturity, weather);
         agent.changeFuelLvl();
         fuel = agent.getFuelLvl();

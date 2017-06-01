@@ -1,142 +1,232 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DecisionTree type="drzewko">
-	<Test attribute="water" operator="=" value="full">
+	<Test attribute="surface" operator="=" value="Buraki">
 		<Test attribute="weather" operator="=" value="sunny">
-			<Test attribute="surface" operator="=" value="Buraki">
-				<Test attribute="fuel" operator="=" value="full">
-					<Output decision="yes" info="(8.0/2.0)"/>
+			<Test attribute="fuel" operator="=" value="full">
+				<Test attribute="water_distance" operator="=" value="far">
+					<Output decision="no" info="(4.0/1.0)"/>
 				</Test>
-				<Test attribute="fuel" operator="=" value="much">
-					<Output decision="yes" info="(1.0)"/>
+				<Test attribute="water_distance" operator="=" value="medium">
+					<Output decision="no" info="(4.0)"/>
 				</Test>
-				<Test attribute="fuel" operator="=" value="half">
-					<Output decision="no" info="(1.0)"/>
-				</Test>
-				<Test attribute="fuel" operator="=" value="little">
-					<Output decision="no" info="(5.0)"/>
-				</Test>
-				<Test attribute="fuel" operator="=" value="lack">
-					<Output decision="yes" info="(4.0/1.0)"/>
+				<Test attribute="water_distance" operator="=" value="near">
+					<Output decision="yes" info="(3.0)"/>
 				</Test>
 			</Test>
-			<Test attribute="surface" operator="=" value="Kukurydza">
-				<Test attribute="maturity" operator="=" value="developed">
-					<Output decision="yes" info="(6.0/1.0)"/>
+			<Test attribute="fuel" operator="=" value="much">
+				<Test attribute="water" operator="=" value="full">
+					<Output decision="yes" info="(6.0)"/>
 				</Test>
-				<Test attribute="maturity" operator="=" value="well">
-					<Output decision="yes" info="(5.0/1.0)"/>
+				<Test attribute="water" operator="=" value="much">
+					<Output decision="yes" info="(5.0)"/>
 				</Test>
-				<Test attribute="maturity" operator="=" value="medium">
-					<Output decision="yes" info="(2.0)"/>
+				<Test attribute="water" operator="=" value="half">
+					<Output decision="no" info="(3.0)"/>
 				</Test>
-				<Test attribute="maturity" operator="=" value="poorly">
-					<Output decision="no" info="(7.0)"/>
+				<Test attribute="water" operator="=" value="little">
+					<Output decision="no" info="(3.0)"/>
+				</Test>
+				<Test attribute="water" operator="=" value="lack">
+					<Output decision="no" info="(5.0/1.0)"/>
 				</Test>
 			</Test>
-			<Test attribute="surface" operator="=" value="Droga">
-				<Output decision="no" info="(17.0)"/>
+			<Test attribute="fuel" operator="=" value="half">
+				<Output decision="no" info="(14.0)"/>
+			</Test>
+			<Test attribute="fuel" operator="=" value="little">
+				<Output decision="no" info="(16.0)"/>
+			</Test>
+			<Test attribute="fuel" operator="=" value="lack">
+				<Output decision="no" info="(21.0/3.0)"/>
 			</Test>
 		</Test>
 		<Test attribute="weather" operator="=" value="cloudy">
 			<Test attribute="fuel" operator="=" value="full">
-				<Test attribute="surface" operator="=" value="Buraki">
-					<Output decision="yes" info="(4.0)"/>
-				</Test>
-				<Test attribute="surface" operator="=" value="Kukurydza">
-					<Output decision="yes" info="(4.0/1.0)"/>
-				</Test>
-				<Test attribute="surface" operator="=" value="Droga">
-					<Output decision="no" info="(2.0)"/>
-				</Test>
-			</Test>
-			<Test attribute="fuel" operator="=" value="much">
-				<Test attribute="maturity" operator="=" value="developed">
-					<Output decision="yes" info="(6.0)"/>
-				</Test>
-				<Test attribute="maturity" operator="=" value="well">
-					<Output decision="yes" info="(2.0/1.0)"/>
-				</Test>
-				<Test attribute="maturity" operator="=" value="medium">
-					<Output decision="yes" info="(1.0)"/>
-				</Test>
-				<Test attribute="maturity" operator="=" value="poorly">
-					<Output decision="no" info="(7.0)"/>
-				</Test>
-			</Test>
-			<Test attribute="fuel" operator="=" value="half">
-				<Output decision="no" info="(9.0)"/>
-			</Test>
-			<Test attribute="fuel" operator="=" value="little">
-				<Output decision="no" info="(12.0)"/>
-			</Test>
-			<Test attribute="fuel" operator="=" value="lack">
-				<Output decision="no" info="(8.0)"/>
-			</Test>
-		</Test>
-		<Test attribute="weather" operator="=" value="rainy">
-			<Output decision="no" info="(57.0)"/>
-		</Test>
-	</Test>
-	<Test attribute="water" operator="=" value="much">
-		<Test attribute="surface" operator="=" value="Buraki">
-			<Test attribute="fuel" operator="=" value="full">
-				<Test attribute="weather" operator="=" value="sunny">
+				<Test attribute="water" operator="=" value="full">
 					<Output decision="yes" info="(5.0)"/>
 				</Test>
-				<Test attribute="weather" operator="=" value="cloudy">
-					<Output decision="yes" info="(3.0)"/>
+				<Test attribute="water" operator="=" value="much">
+					<Output decision="no" info="(0.0)"/>
 				</Test>
-				<Test attribute="weather" operator="=" value="rainy">
-					<Output decision="no" info="(4.0)"/>
+				<Test attribute="water" operator="=" value="half">
+					<Output decision="no" info="(2.0)"/>
+				</Test>
+				<Test attribute="water" operator="=" value="little">
+					<Output decision="no" info="(6.0/1.0)"/>
+				</Test>
+				<Test attribute="water" operator="=" value="lack">
+					<Output decision="no" info="(3.0)"/>
 				</Test>
 			</Test>
 			<Test attribute="fuel" operator="=" value="much">
-				<Test attribute="maturity" operator="=" value="developed">
-					<Output decision="yes" info="(2.0)"/>
+				<Test attribute="fuel_distance" operator="=" value="far">
+					<Output decision="no" info="(4.0)"/>
 				</Test>
-				<Test attribute="maturity" operator="=" value="well">
-					<Output decision="yes" info="(1.0)"/>
-				</Test>
-				<Test attribute="maturity" operator="=" value="medium">
-					<Test attribute="weather" operator="=" value="sunny">
+				<Test attribute="fuel_distance" operator="=" value="medium">
+					<Test attribute="water_distance" operator="=" value="far">
+						<Output decision="no" info="(0.0)"/>
+					</Test>
+					<Test attribute="water_distance" operator="=" value="medium">
+						<Output decision="no" info="(3.0)"/>
+					</Test>
+					<Test attribute="water_distance" operator="=" value="near">
 						<Output decision="yes" info="(2.0)"/>
 					</Test>
-					<Test attribute="weather" operator="=" value="cloudy">
-						<Output decision="yes" info="(0.0)"/>
-					</Test>
-					<Test attribute="weather" operator="=" value="rainy">
-						<Output decision="no" info="(2.0)"/>
-					</Test>
 				</Test>
-				<Test attribute="maturity" operator="=" value="poorly">
-					<Output decision="no" info="(4.0)"/>
+				<Test attribute="fuel_distance" operator="=" value="near">
+					<Output decision="yes" info="(4.0)"/>
 				</Test>
 			</Test>
 			<Test attribute="fuel" operator="=" value="half">
 				<Output decision="no" info="(15.0)"/>
 			</Test>
 			<Test attribute="fuel" operator="=" value="little">
-				<Output decision="no" info="(11.0)"/>
+				<Output decision="no" info="(13.0)"/>
 			</Test>
 			<Test attribute="fuel" operator="=" value="lack">
-				<Output decision="no" info="(12.0/1.0)"/>
+				<Test attribute="water" operator="=" value="full">
+					<Test attribute="fuel_distance" operator="=" value="far">
+						<Output decision="yes" info="(0.0)"/>
+					</Test>
+					<Test attribute="fuel_distance" operator="=" value="medium">
+						<Output decision="no" info="(2.0)"/>
+					</Test>
+					<Test attribute="fuel_distance" operator="=" value="near">
+						<Output decision="yes" info="(2.0)"/>
+					</Test>
+				</Test>
+				<Test attribute="water" operator="=" value="much">
+					<Output decision="yes" info="(5.0/1.0)"/>
+				</Test>
+				<Test attribute="water" operator="=" value="half">
+					<Output decision="no" info="(5.0)"/>
+				</Test>
+				<Test attribute="water" operator="=" value="little">
+					<Output decision="no" info="(3.0)"/>
+				</Test>
+				<Test attribute="water" operator="=" value="lack">
+					<Output decision="yes" info="(1.0)"/>
+				</Test>
 			</Test>
 		</Test>
-		<Test attribute="surface" operator="=" value="Kukurydza">
-			<Output decision="no" info="(50.0/10.0)"/>
-		</Test>
-		<Test attribute="surface" operator="=" value="Droga">
-			<Output decision="no" info="(66.0)"/>
+		<Test attribute="weather" operator="=" value="rainy">
+			<Output decision="no" info="(94.0)"/>
 		</Test>
 	</Test>
-	<Test attribute="water" operator="=" value="half">
-		<Output decision="no" info="(177.0)"/>
+	<Test attribute="surface" operator="=" value="Kukurydza">
+		<Test attribute="weather" operator="=" value="sunny">
+			<Test attribute="fuel" operator="=" value="full">
+				<Test attribute="water_distance" operator="=" value="far">
+					<Test attribute="water" operator="=" value="full">
+						<Output decision="yes" info="(2.0)"/>
+					</Test>
+					<Test attribute="water" operator="=" value="much">
+						<Output decision="yes" info="(0.0)"/>
+					</Test>
+					<Test attribute="water" operator="=" value="half">
+						<Output decision="yes" info="(0.0)"/>
+					</Test>
+					<Test attribute="water" operator="=" value="little">
+						<Output decision="yes" info="(0.0)"/>
+					</Test>
+					<Test attribute="water" operator="=" value="lack">
+						<Output decision="no" info="(2.0)"/>
+					</Test>
+				</Test>
+				<Test attribute="water_distance" operator="=" value="medium">
+					<Output decision="no" info="(4.0)"/>
+				</Test>
+				<Test attribute="water_distance" operator="=" value="near">
+					<Output decision="yes" info="(11.0/3.0)"/>
+				</Test>
+			</Test>
+			<Test attribute="fuel" operator="=" value="much">
+				<Test attribute="water" operator="=" value="full">
+					<Output decision="yes" info="(6.0)"/>
+				</Test>
+				<Test attribute="water" operator="=" value="much">
+					<Output decision="yes" info="(3.0)"/>
+				</Test>
+				<Test attribute="water" operator="=" value="half">
+					<Output decision="no" info="(4.0)"/>
+				</Test>
+				<Test attribute="water" operator="=" value="little">
+					<Output decision="yes" info="(2.0/1.0)"/>
+				</Test>
+				<Test attribute="water" operator="=" value="lack">
+					<Test attribute="water_distance" operator="=" value="far">
+						<Output decision="no" info="(3.0)"/>
+					</Test>
+					<Test attribute="water_distance" operator="=" value="medium">
+						<Output decision="no" info="(1.0)"/>
+					</Test>
+					<Test attribute="water_distance" operator="=" value="near">
+						<Output decision="yes" info="(3.0)"/>
+					</Test>
+				</Test>
+			</Test>
+			<Test attribute="fuel" operator="=" value="half">
+				<Output decision="no" info="(17.0)"/>
+			</Test>
+			<Test attribute="fuel" operator="=" value="little">
+				<Output decision="no" info="(14.0)"/>
+			</Test>
+			<Test attribute="fuel" operator="=" value="lack">
+				<Output decision="no" info="(16.0/4.0)"/>
+			</Test>
+		</Test>
+		<Test attribute="weather" operator="=" value="cloudy">
+			<Test attribute="fuel" operator="=" value="full">
+				<Output decision="yes" info="(18.0/4.0)"/>
+			</Test>
+			<Test attribute="fuel" operator="=" value="much">
+				<Test attribute="fuel_distance" operator="=" value="far">
+					<Output decision="no" info="(5.0/1.0)"/>
+				</Test>
+				<Test attribute="fuel_distance" operator="=" value="medium">
+					<Output decision="yes" info="(6.0)"/>
+				</Test>
+				<Test attribute="fuel_distance" operator="=" value="near">
+					<Output decision="yes" info="(9.0/4.0)"/>
+				</Test>
+			</Test>
+			<Test attribute="fuel" operator="=" value="half">
+				<Output decision="no" info="(9.0)"/>
+			</Test>
+			<Test attribute="fuel" operator="=" value="little">
+				<Output decision="no" info="(22.0)"/>
+			</Test>
+			<Test attribute="fuel" operator="=" value="lack">
+				<Test attribute="fuel_distance" operator="=" value="far">
+					<Output decision="no" info="(7.0)"/>
+				</Test>
+				<Test attribute="fuel_distance" operator="=" value="medium">
+					<Output decision="no" info="(10.0)"/>
+				</Test>
+				<Test attribute="fuel_distance" operator="=" value="near">
+					<Test attribute="water" operator="=" value="full">
+						<Output decision="yes" info="(0.0)"/>
+					</Test>
+					<Test attribute="water" operator="=" value="much">
+						<Output decision="yes" info="(2.0)"/>
+					</Test>
+					<Test attribute="water" operator="=" value="half">
+						<Output decision="yes" info="(0.0)"/>
+					</Test>
+					<Test attribute="water" operator="=" value="little">
+						<Output decision="no" info="(3.0)"/>
+					</Test>
+					<Test attribute="water" operator="=" value="lack">
+						<Output decision="yes" info="(2.0)"/>
+					</Test>
+				</Test>
+			</Test>
+		</Test>
+		<Test attribute="weather" operator="=" value="rainy">
+			<Output decision="no" info="(83.0)"/>
+		</Test>
 	</Test>
-	<Test attribute="water" operator="=" value="little">
-		<Output decision="no" info="(162.0)"/>
-	</Test>
-	<Test attribute="water" operator="=" value="lack">
-		<Output decision="no" info="(174.0/8.0)"/>
+	<Test attribute="surface" operator="=" value="Droga">
+		<Output decision="no" info="(279.0)"/>
 	</Test>
 </DecisionTree>
-

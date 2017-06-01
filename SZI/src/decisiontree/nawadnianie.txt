@@ -939,3 +939,4 @@ little, full, Droga, developed, far, far, cloudy, no
 lack, much, Kukurydza, well, near, far, cloudy, yes
 full, full, Kukurydza, medium, far, far, rainy, no
 little, much, Kukurydza, developed, near, near, sunny, no
+

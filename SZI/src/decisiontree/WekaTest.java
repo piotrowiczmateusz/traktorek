@@ -179,7 +179,7 @@ public class WekaTest {
             
                 generateSetWater();
 
-		BufferedReader datafile = readDataFile("C:\\Users\\Mateusz\\Documents\\traktorek\\SZI\\src\\decisiontree\\out3.txt");
+		BufferedReader datafile = readDataFile("C:\\Users\\Mateusz\\Documents\\traktorek\\SZI\\src\\decisiontree\\nawadnianie.txt");
  
 		Instances data = new Instances(datafile);
 		data.setClassIndex(data.numAttributes() - 1);

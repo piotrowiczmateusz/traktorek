@@ -77,8 +77,8 @@ public class XMLParser {
                         String attribute = rootAttr.getAttribute("attribute");
                         String value = rootAttr.getAttribute("value");                    
                         if((attribute.equals(currentAttribute)) &&(value.equals(currentValue))){
-                            System.out.println("Atrybut root = " + attribute);
-                            System.out.println("Parametr traktora: " + currentValue);
+                            System.out.println("Atrybut nr 1 = " + attribute + " (" + currentValue + ")");
+                            
                             NodeList childList = rootAttr.getChildNodes();
 
 
@@ -98,8 +98,8 @@ public class XMLParser {
                                         value = secondAttr.getAttribute("value");
                                         setCurrentParameters(attribute);
                                         if((attribute.equals(currentAttribute)) &&(value.equals(currentValue))){
-                                            System.out.println("Atrybut nr 2 = " + attribute);
-                                            System.out.println("Parametr traktora: " + currentValue);                               
+                                            System.out.println("Atrybut nr 2 = " + attribute + " (" + currentValue + ")");
+                                                                       
                                             NodeList childListTwo = secondAttr.getChildNodes();
 
 
@@ -119,8 +119,8 @@ public class XMLParser {
                                                         value = thirdAttr.getAttribute("value");
                                                         setCurrentParameters(attribute);
                                                         if((attribute.equals(currentAttribute)) &&(value.equals(currentValue))){
-                                                            System.out.println("Atrybut nr 3 = " + attribute);
-                                                            System.out.println("Parametr traktora: " + currentValue);
+                                                            System.out.println("Atrybut nr 3 = " + attribute + " (" + currentValue + ")");
+                                                          
                                                             NodeList childListTree = thirdAttr.getChildNodes();
 
 
@@ -140,8 +140,8 @@ public class XMLParser {
                                                                         value = fourthAttr.getAttribute("value");
                                                                         setCurrentParameters(attribute);
                                                                         if((attribute.equals(currentAttribute)) &&(value.equals(currentValue))){
-                                                                            System.out.println("Atrybut nr 4 = " + attribute);
-                                                                            System.out.println("Parametr traktora: " + currentValue);
+                                                                            System.out.println("Atrybut nr 4 = " + attribute + " (" + currentValue + ")");
+                                                                          
                                                                         }
                                                                     }
                                                                 }
@@ -204,17 +204,17 @@ public class XMLParser {
         }
         
         else{
-            System.out.println("Błąd, Nie przyporządkowano atrubutu. -" + attribute+"-");
+//            System.out.println("Błąd, Nie przyporządkowano atrubutu. -" + attribute+"-");
         }
     }
 
-    public static void getDecisionWater(String fuel, String water, String distance, String waterDistance, String surface, String plantMaturity, String weather) throws SAXException {
+    public static void getDecisionWater(String fuel, String water, String distance, String waterDistance, String surface, String maturity, String weather) throws SAXException {
         parametryWoda[0] = fuel;
         parametryWoda[1] = water;
-        parametryWoda[2] = distance;
-        parametryWoda[3] = waterDistance;
-        parametryWoda[4] = surface;
-        parametryWoda[5] = plantMaturity;
+        parametryWoda[2] = surface;
+        parametryWoda[3] = maturity;
+        parametryWoda[4] = distance;
+        parametryWoda[5] = waterDistance;
         parametryWoda[6] = weather;
         System.out.println("Parser - otrzymane parametry to: " + 
                 parametryWoda[0] + ", " + parametryWoda[1] + ", " + 
@@ -249,8 +249,7 @@ public class XMLParser {
                         String attribute = rootAttr.getAttribute("attribute");
                         String value = rootAttr.getAttribute("value");                    
                         if((attribute.equals(currentAttribute)) &&(value.equals(currentValue))){
-                            System.out.println("Atrybut root = " + attribute);
-                            System.out.println("Parametr traktora: " + currentValue);
+                            System.out.println("Atrybut nr 1 = " + attribute + " (" + currentValue + ")");
                             NodeList childList = rootAttr.getChildNodes();
 
 
@@ -270,8 +269,7 @@ public class XMLParser {
                                         value = secondAttr.getAttribute("value");
                                         setCurrentParametersWater(attribute);
                                         if((attribute.equals(currentAttribute)) &&(value.equals(currentValue))){
-                                            System.out.println("Atrybut nr 2 = " + attribute);
-                                            System.out.println("Parametr traktora: " + currentValue);                               
+                                            System.out.println("Atrybut nr 2 = " + attribute + " (" + currentValue +")");                        
                                             NodeList childListTwo = secondAttr.getChildNodes();
 
 
@@ -291,8 +289,7 @@ public class XMLParser {
                                                         value = thirdAttr.getAttribute("value");
                                                         setCurrentParametersWater(attribute);
                                                         if((attribute.equals(currentAttribute)) &&(value.equals(currentValue))){
-                                                            System.out.println("Atrybut nr 3 = " + attribute);
-                                                            System.out.println("Parametr traktora: " + currentValue);
+                                                            System.out.println("Atrybut nr 3 = " + attribute+ " (" + currentValue + ")");
                                                             NodeList childListTree = thirdAttr.getChildNodes();
 
 
@@ -312,8 +309,7 @@ public class XMLParser {
                                                                         value = fourthAttr.getAttribute("value");
                                                                         setCurrentParametersWater(attribute);
                                                                         if((attribute.equals(currentAttribute)) &&(value.equals(currentValue))){
-                                                                            System.out.println("Atrybut nr 4 = " + attribute);
-                                                                            System.out.println("Parametr traktora: " + currentValue);
+                                                                            System.out.println("Atrybut nr 4 = " + attribute + " (" + currentValue + ")"); 
                                                                             
                                                                             NodeList childListFour = fourthAttr.getChildNodes();
 
@@ -334,8 +330,7 @@ public class XMLParser {
                                                                         value = fifthAttr.getAttribute("value");
                                                                         setCurrentParametersWater(attribute);
                                                                         if((attribute.equals(currentAttribute)) &&(value.equals(currentValue))){
-                                                                            System.out.println("Atrybut nr 5 = " + attribute);
-                                                                            System.out.println("Parametr traktora: " + currentValue);
+                                                                            System.out.println("Atrybut nr 5 = " + attribute+ " (" + currentValue + ")");                                                
                                                                             
                                                                             NodeList childListFive = fourthAttr.getChildNodes();
 
@@ -356,8 +351,8 @@ public class XMLParser {
                                                                         value = sixthAttr.getAttribute("value");
                                                                         setCurrentParametersWater(attribute);
                                                                         if((attribute.equals(currentAttribute)) &&(value.equals(currentValue))){
-                                                                            System.out.println("Atrybut nr 6 = " + attribute);
-                                                                            System.out.println("Parametr traktora: " + currentValue);
+                                                                            System.out.println("Atrybut nr 6 = " + attribute + " (" + currentValue + ")");
+                                                                          
                                                                             
                                                                              NodeList childListSix = sixthAttr.getChildNodes();
 
@@ -378,8 +373,7 @@ public class XMLParser {
                                                                         value = seventhAttr.getAttribute("value");
                                                                         setCurrentParametersWater(attribute);
                                                                         if((attribute.equals(currentAttribute)) &&(value.equals(currentValue))){
-                                                                            System.out.println("Atrybut nr 7 = " + attribute);
-                                                                            System.out.println("Parametr traktora: " + currentValue);
+                                                                            System.out.println("Atrybut nr 7 = " + attribute + " (" + currentValue + ")");                                                                          
                                                                             
                                                                             NodeList childListSeven = seventhAttr.getChildNodes();
                                                                             

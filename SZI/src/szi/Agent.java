@@ -41,11 +41,11 @@ public class Agent extends TimerTask {
     int rotation;
     runNetwork runnetwork = null;
     
-    String[] fuel = new String[5];  
+    String[] fuel = new String[9];  
     String currentFuel;
     int counter = 0;   
     
-    String[] water = new String[9];  
+    String[] water = new String[11];  
     String currentWater;
     int counterWater = 0;   
     
@@ -55,10 +55,14 @@ public class Agent extends TimerTask {
 
     public void initFuelValues(){
         fuel[0] = "full";
-        fuel[1] = "much";
-        fuel[2] = "half";
-        fuel[3] = "little";
-        fuel[4] = "lack";
+        fuel[1] = "full";
+        fuel[2] = "much";
+        fuel[3] = "much";
+        fuel[4] = "half";
+        fuel[5] = "half";
+        fuel[6] = "little";
+        fuel[7] = "little";
+        fuel[8] = "lack";
         
         currentFuel = fuel[counter];
     }
@@ -68,11 +72,13 @@ public class Agent extends TimerTask {
         water[1] = "full";
         water[2] = "much";
         water[3] = "much";
-        water[4] = "half";
-        water[5] = "half";
-        water[6] = "little";
-        water[7] = "little";
-        water[8] = "lack";
+        water[4] = "much";
+        water[5] = "much";
+        water[6] = "half";
+        water[7] = "half";       
+        water[8] = "little";
+        water[9] = "little";
+        water[10] = "lack";
         
         currentWater = water[counterWater];
     }
@@ -166,15 +172,12 @@ public class Agent extends TimerTask {
             }
         }
         
-       // System.out.println("Obecna pozycja: X: " + positionX + ", Y: " + positionY);
         if(window.komorki[positionX][positionY].isCurrentObject()){
-         // System.out.println("testSet\\" + window.komorki[positionX][positionY].getImageName());
-          double[] x = runnetwork.neuralNetwork.getPixels("testSet\\" + window.komorki[positionX][positionY].getImageName());
-          
+
+          double[] x = runnetwork.neuralNetwork.getPixels("testSet\\" + window.komorki[positionX][positionY].getImageName());       
           runnetwork.neuralNetwork.setInputs(x);
           double decisionValue = runnetwork.neuralNetwork.getOutput()[0];         
-         // System.out.println("Stan nawozu na określonym polu: " + (1-(window.komorki[positionX][positionY].getNawoz())));
-         // System.out.println("Decyzja: " + decisionValue);
+       
           if(decisionValue > 0.5){
               window.komorki[positionX][positionY].fertilize();
           }
@@ -189,14 +192,11 @@ public class Agent extends TimerTask {
         int y = positionY;
         String absoluteDirection = LocalToAbsolute();
         if (absoluteDirection.equals(Agent.NORTH) && positionY - i >= 0 && positionY - i < window.komorki[0].length) {
-            x -= i;
-            
+            x -= i;          
         } else if (absoluteDirection.equals(Agent.SOUTH) && positionY + i >= 0 && positionY + i < window.komorki[0].length) {
-            y += i;
-            
+            y += i;            
         } else if (absoluteDirection.equals(Agent.WEST) && positionX - i >= 0 && positionX - i < window.komorki.length) {
             x -= i;
-
         } else if (absoluteDirection.equals(Agent.EAST) && positionX - i >= 0 && positionX - i < window.komorki.length) {
             y += i;
         }
@@ -258,7 +258,6 @@ public class Agent extends TimerTask {
     public class Position {
 
         public int x;
-
         public int y;
 
         public Position(int x, int y) {
