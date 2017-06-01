@@ -192,8 +192,7 @@ public class WekaTest {
 
                 FastVector predictions = new FastVector();
                 
-                Evaluation validation = classify(j48, trainingSplits[parametersNumber-1], testingSplits[parametersNumber-1]);
-                predictions.appendElements(validation.predictions());
+                Evaluation validation = classify(j48, trainingSplits[parametersNumber-1], testingSplits[parametersNumber-1]);          
                 System.out.println(j48);
                 
                  /* ZAPISYWANIE DO PLIKU */
