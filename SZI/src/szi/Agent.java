@@ -174,9 +174,9 @@ public class Agent extends TimerTask {
             }
         }
         
-        if(window.komorki[positionX][positionY].isCurrentObject()){
-
-            if(window.komorki[positionX][positionY].getName() == "Droga")
+//        if(window.komorki[positionX][positionY].isCurrentObject()){
+        if(true){
+            if(window.komorki[positionX][positionY].getName().equals("Droga"))
             {
                 double[] x = runnetwork.neuralNetwork.getPixels("testSet\\" + window.komorki[positionX][positionY].getImageName());
 
@@ -200,7 +200,9 @@ public class Agent extends TimerTask {
                 double[] x = runnetwork.neuralNetwork.getPixels("testSet\\" + window.komorki[positionX][positionY].getImageName());
 
                 runnetwork.neuralNetwork.setInputs(x);
-                double decisionValue = runnetwork.neuralNetwork.getOutput()[0];         
+                double decisionValue = runnetwork.neuralNetwork.getOutput()[0]; 
+                System.out.println("Stan nawozu na określonym polu: " + (1-(window.komorki[positionX][positionY].getNawoz())));
+                System.out.println("Decyzja nawożenia: " + decisionValue);
                 if(decisionValue > 0.5){
                     window.komorki[positionX][positionY].fertilize();
                 }
